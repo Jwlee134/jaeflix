@@ -76,7 +76,7 @@ class DetailContainer extends React.Component {
       }
     } catch (error) {
       this.setState({
-        error: "Can't find anything.",
+        error: "페이지 정보를 찾을 수 없습니다.",
       });
     } finally {
       this.setState({

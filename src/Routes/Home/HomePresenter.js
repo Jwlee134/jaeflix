@@ -2,29 +2,40 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Section from "Components/Section";
+import Loader from "Components/Loader";
+import Message from "Components/Message";
 
 const Container = styled.div`
-  padding: 0px 10px;
+  padding: 0px 20px;
 `;
 
 const HomePresenter = ({ nowPlaying, upcoming, popular, error, loading }) =>
-  loading ? null : (
+  loading ? (
+    <Loader />
+  ) : (
     <Container>
-      {nowPlaying && nowPlaying.length > 0 ? (
+      {nowPlaying && nowPlaying.length > 0 && (
         <Section title="현재 상영중">
-          {nowPlaying.map((movie) => movie.title)}
+          {nowPlaying.map((movie) => (
+            <div key={movie.id}>{movie.title}</div>
+          ))}
         </Section>
-      ) : null}
-      {popular && popular.length > 0 ? (
-        <Section title="인기 영화">
-          {popular.map((movie) => movie.title)}
+      )}
+      {popular && popular.length > 0 && (
+        <Section title="인기">
+          {popular.map((movie) => (
+            <div key={movie.id}>{movie.title}</div>
+          ))}
         </Section>
-      ) : null}
-      {upcoming && upcoming.length > 0 ? (
-        <Section title="개봉 예정">
-          {upcoming.map((movie) => movie.title)}
+      )}
+      {upcoming && upcoming.length > 0 && (
+        <Section title="상영 예정">
+          {upcoming.map((movie) => (
+            <div key={movie.id}>{movie.title}</div>
+          ))}
         </Section>
-      ) : null}
+      )}
+      {error && <Message text={error} />}
     </Container>
   );
 

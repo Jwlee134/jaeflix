@@ -11,7 +11,15 @@ class SearchContainer extends React.Component {
     loading: false,
   };
 
-  handleSubmit = () => {
+  updateTerm = (e) => {
+    const {
+      target: { value },
+    } = e;
+    this.setState({ searchTerm: value });
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
     const { searchTerm } = this.state;
     if (searchTerm !== "") {
       this.searchByTerm(searchTerm);
@@ -35,7 +43,7 @@ class SearchContainer extends React.Component {
       });
     } catch (error) {
       this.setState({
-        error: "Can't find results.",
+        error: "페이지 정보를 찾을 수 없습니다.",
       });
     } finally {
       this.setState({
@@ -54,6 +62,7 @@ class SearchContainer extends React.Component {
         error={error}
         loading={loading}
         handleSubmit={this.handleSubmit}
+        updateTerm={this.updateTerm}
       />
     );
   }
