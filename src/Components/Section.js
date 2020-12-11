@@ -6,9 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const Container = styled.div`
-  :not(:last-child) {
-    margin-bottom: 50px;
-  }
+  margin-bottom: 50px;
 `;
 
 const Title = styled.span`
@@ -20,18 +18,18 @@ const Grid = styled.div`
 `;
 
 const StyledSlider = styled(Slider)`
-  .slick-slide div {
+  .slick-slide {
     padding: 0px 10px;
-    outline: none;
   }
 `;
 
 const Section = ({ title, children }) => {
+  console.log(children);
   const settings = {
     infinite: false,
     swipeToSlide: true,
     centerPadding: "60px",
-    slidesToShow: 8,
+    slidesToShow: 7,
     speed: 500,
     slidesToScroll: 3,
     responsive: [
@@ -48,15 +46,22 @@ const Section = ({ title, children }) => {
         },
       },
       {
-        breakpoint: 700,
+        breakpoint: 800,
         settings: {
           slidesToShow: 4,
         },
       },
       {
-        breakpoint: 500,
+        breakpoint: 600,
         settings: {
           slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 500,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
         },
       },
     ],
