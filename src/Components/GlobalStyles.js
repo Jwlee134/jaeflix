@@ -15,8 +15,7 @@ const globalStyles = createGlobalStyle`
         font-size:12px;
         background-color:#253235;
         color:white;
-        padding-top:80px;
-        height:100%
+        height:100%;
     }
     #root{
         height:100%;

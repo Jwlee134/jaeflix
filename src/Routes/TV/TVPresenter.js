@@ -7,6 +7,7 @@ import Message from "Components/Message";
 import Poster from "Components/Poster";
 
 const Container = styled.div`
+  margin-top: 80px;
   padding: 0px 20px;
 `;
 
@@ -23,7 +24,6 @@ const TVPresenter = ({ topRated, airingToday, popular, error, loading }) =>
               id={show.id}
               imageUrl={show.poster_path}
               title={show.name}
-              rating={show.vote_average}
               year={show.first_air_date}
             />
           ))}
@@ -37,7 +37,6 @@ const TVPresenter = ({ topRated, airingToday, popular, error, loading }) =>
               id={show.id}
               imageUrl={show.poster_path}
               title={show.name}
-              rating={show.vote_average}
               year={show.first_air_date}
             />
           ))}
@@ -51,7 +50,6 @@ const TVPresenter = ({ topRated, airingToday, popular, error, loading }) =>
               id={show.id}
               imageUrl={show.poster_path}
               title={show.name}
-              rating={show.vote_average}
               year={show.first_air_date}
             />
           ))}

@@ -7,6 +7,7 @@ import Message from "Components/Message";
 import Poster from "Components/Poster";
 
 const Container = styled.div`
+  margin-top: 80px;
   padding: 0px 20px;
   height: 100%;
 `;
@@ -51,7 +52,6 @@ const SearchPresenter = ({
                 id={movie.id}
                 imageUrl={movie.poster_path}
                 title={movie.title}
-                rating={movie.vote_average}
                 year={movie.release_date}
                 isMovie={true}
               />
@@ -66,7 +66,6 @@ const SearchPresenter = ({
                 id={show.id}
                 imageUrl={show.poster_path}
                 title={show.name}
-                rating={show.vote_average}
                 year={show.first_air_date}
               />
             ))}

@@ -27,6 +27,26 @@ const Img = styled.div`
   }
 `;
 
+const Text = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Star = styled.div`
+  margin-bottom: 3px;
+  margin-right: 3px;
+`;
+
+const Rating = styled.div`
+  position: absolute;
+  bottom: 4px;
+  right: 7px;
+  opacity: 0;
+  transition: opacity 0.1s linear;
+  display: flex;
+`;
+
 const Detail = styled.div`
   position: absolute;
   width: 100%;
@@ -48,13 +68,16 @@ const ImgContainer = styled.div`
     ${Detail} {
       opacity: 1;
     }
+    ${Rating} {
+      opacity: 1;
+    }
   }
   position: relative;
 `;
 
 const Title = styled.span`
   display: block;
-  margin-bottom: 5px;
+  padding-bottom: 5px;
 `;
 
 const Year = styled.span`
@@ -74,9 +97,12 @@ const Poster = ({ id, imageUrl, title, rating, year, isMovie = false }) => (
           }
         />
         <Detail>상세 보기</Detail>
+        <Rating>
+          <Star>★</Star> <Text>{rating}/10</Text>
+        </Rating>
       </ImgContainer>
       <Title>
-        {title.length > 19 ? `${title.substring(0, 18)}...` : title}
+        {title.length > 18 ? `${title.substring(0, 17)}...` : title}
       </Title>
       <Year>{year.substring(0, 4)}</Year>
     </Container>

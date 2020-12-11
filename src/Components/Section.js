@@ -13,18 +13,14 @@ const Title = styled.span`
   font-size: 20px;
 `;
 
-const Grid = styled.div`
-  margin: 25px;
-`;
-
 const StyledSlider = styled(Slider)`
+  margin: 25px;
   .slick-slide {
     padding: 0px 10px;
   }
 `;
 
 const Section = ({ title, children }) => {
-  console.log(children);
   const settings = {
     infinite: false,
     swipeToSlide: true,
@@ -69,9 +65,7 @@ const Section = ({ title, children }) => {
   return (
     <Container>
       <Title>{title}</Title>
-      <Grid>
-        <StyledSlider {...settings}>{children}</StyledSlider>
-      </Grid>
+      <StyledSlider {...settings}>{children}</StyledSlider>
     </Container>
   );
 };

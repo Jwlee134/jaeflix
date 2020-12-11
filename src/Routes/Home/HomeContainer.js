@@ -5,8 +5,6 @@ import HomePresenter from "./HomePresenter";
 class HomeContainer extends React.Component {
   state = {
     nowPlaying: null,
-    upcoming: null,
-    popular: null,
     error: null,
     loading: true,
   };
@@ -16,16 +14,9 @@ class HomeContainer extends React.Component {
       const {
         data: { results: nowPlaying },
       } = await moviesApi.nowPlaying();
-      const {
-        data: { results: upcoming },
-      } = await moviesApi.upcoming();
-      const {
-        data: { results: popular },
-      } = await moviesApi.popular();
+      console.log(nowPlaying);
       this.setState({
         nowPlaying,
-        upcoming,
-        popular,
       });
     } catch (error) {
       this.setState({
@@ -39,15 +30,9 @@ class HomeContainer extends React.Component {
   }
 
   render() {
-    const { nowPlaying, upcoming, popular, error, loading } = this.state;
+    const { nowPlaying, error, loading } = this.state;
     return (
-      <HomePresenter
-        nowPlaying={nowPlaying}
-        upcoming={upcoming}
-        popular={popular}
-        error={error}
-        loading={loading}
-      />
+      <HomePresenter nowPlaying={nowPlaying} error={error} loading={loading} />
     );
   }
 }
