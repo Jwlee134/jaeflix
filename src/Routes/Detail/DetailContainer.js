@@ -5,6 +5,7 @@ import DetailPresenter from "./DetailPresenter";
 class DetailContainer extends React.Component {
   state = {
     result: null,
+    recommends: null,
     error: null,
     loading: true,
   };
@@ -25,10 +26,16 @@ class DetailContainer extends React.Component {
     try {
       if (isMovie) {
         const { data: result } = await moviesApi.movieDetail(id);
-        this.setState({ result });
+        const {
+          data: { results: recommends },
+        } = await moviesApi.recommends(id);
+        this.setState({ result, recommends });
       } else {
         const { data: result } = await tvApi.tvDetail(id);
-        this.setState({ result });
+        const {
+          data: { results: recommends },
+        } = await tvApi.recommends(id);
+        this.setState({ result, recommends });
       }
     } catch (error) {
       this.setState({
@@ -41,9 +48,29 @@ class DetailContainer extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.match.params.id !== prevProps.match.params.id) {
+      this.setState({
+        result: null,
+        recommends: null,
+        error: null,
+        loading: true,
+      });
+      this.render();
+      this.componentDidMount();
+    }
+  }
+
   render() {
-    const { result, error, loading } = this.state;
-    return <DetailPresenter result={result} error={error} loading={loading} />;
+    const { result, recommends, error, loading } = this.state;
+    return (
+      <DetailPresenter
+        result={result}
+        error={error}
+        loading={loading}
+        recommends={recommends}
+      />
+    );
   }
 }
 

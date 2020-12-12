@@ -14,7 +14,6 @@ class HomeContainer extends React.Component {
       const {
         data: { results: nowPlaying },
       } = await moviesApi.nowPlaying();
-      console.log(nowPlaying);
       this.setState({
         nowPlaying,
       });

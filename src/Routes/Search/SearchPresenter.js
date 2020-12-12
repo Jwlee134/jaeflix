@@ -5,6 +5,7 @@ import Loader from "Components/Loader";
 import Section from "Components/Section";
 import Message from "Components/Message";
 import Poster from "Components/Poster";
+import { Helmet } from "react-helmet";
 
 const Container = styled.div`
   margin-top: 80px;
@@ -32,55 +33,62 @@ const SearchPresenter = ({
   handleSubmit,
   updateTerm,
 }) => (
-  <Container>
-    <Form onSubmit={handleSubmit}>
-      <Input
-        placeholder="영화 또는 TV 검색..."
-        value={searchTerm}
-        onChange={updateTerm}
-      ></Input>
-    </Form>
-    {loading ? (
-      <Loader />
-    ) : (
-      <>
-        {movieResults && movieResults.length > 0 && (
-          <Section title="영화 검색 결과">
-            {movieResults.map((movie) => (
-              <Poster
-                key={movie.id}
-                id={movie.id}
-                imageUrl={movie.poster_path}
-                title={movie.title}
-                year={movie.release_date}
-                isMovie={true}
-              />
-            ))}
-          </Section>
-        )}
-        {tvResults && tvResults.length > 0 && (
-          <Section title="TV 검색 결과">
-            {tvResults.map((show) => (
-              <Poster
-                key={show.id}
-                id={show.id}
-                imageUrl={show.poster_path}
-                title={show.name}
-                year={show.first_air_date}
-              />
-            ))}
-          </Section>
-        )}
-        {error && <Message text={error} />}
-        {tvResults &&
-          movieResults &&
-          movieResults.length === 0 &&
-          tvResults.length === 0 && (
-            <Message text={"일치하는 결과가 없습니다."} />
+  <>
+    <Helmet>
+      <title>검색 | Jaeflix</title>
+    </Helmet>
+    <Container>
+      <Form onSubmit={handleSubmit}>
+        <Input
+          placeholder="영화 또는 TV 검색..."
+          value={searchTerm}
+          onChange={updateTerm}
+        ></Input>
+      </Form>
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          {movieResults && movieResults.length > 0 && (
+            <Section title="영화 검색 결과">
+              {movieResults.map((movie) => (
+                <Poster
+                  key={movie.id}
+                  id={movie.id}
+                  imageUrl={movie.poster_path}
+                  title={movie.title}
+                  rating={movie.vote_average}
+                  year={movie.release_date}
+                  isMovie={true}
+                />
+              ))}
+            </Section>
           )}
-      </>
-    )}
-  </Container>
+          {tvResults && tvResults.length > 0 && (
+            <Section title="TV 검색 결과">
+              {tvResults.map((show) => (
+                <Poster
+                  key={show.id}
+                  id={show.id}
+                  imageUrl={show.poster_path}
+                  title={show.name}
+                  rating={show.vote_average}
+                  year={show.first_air_date}
+                />
+              ))}
+            </Section>
+          )}
+          {error && <Message text={error} />}
+          {tvResults &&
+            movieResults &&
+            movieResults.length === 0 &&
+            tvResults.length === 0 && (
+              <Message text={"일치하는 결과가 없습니다."} />
+            )}
+        </>
+      )}
+    </Container>
+  </>
 );
 
 SearchPresenter.propTypes = {

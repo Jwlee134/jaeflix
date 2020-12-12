@@ -24,6 +24,7 @@ export const tvApi = {
         query: term,
       },
     }),
+  recommends: (id) => api.get(`tv/${id}/recommendations`),
 };
 
 export const moviesApi = {
@@ -43,4 +44,5 @@ export const moviesApi = {
         query: term,
       },
     }),
+  recommends: (id) => api.get(`movie/${id}/recommendations`),
 };

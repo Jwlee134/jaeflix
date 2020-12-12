@@ -4,15 +4,16 @@ Learning React and ES6 by building a movie discovery app.
 
 ## Screens
 
-- [ ] Home
-- [ ] TV shows
-- [ ] Search
-- [ ] Detail
+- [x] 홈
+- [x] 영화
+- [x] TV
+- [x] 검색
+- [x] 상세 정보
 
 ## API Verbs
 
 - [x] Now playing (Movie)
-- [x] Top rated (TV)
+- [x] Top rated (TV, Movie)
 - [x] Popular (TV, Movie)
 - [x] Upcoming (Movie)
 - [x] Airing today (TV)
