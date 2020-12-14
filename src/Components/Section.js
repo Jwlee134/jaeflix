@@ -25,10 +25,22 @@ const Section = ({ title, children }) => {
     infinite: false,
     swipeToSlide: true,
     centerPadding: "60px",
-    slidesToShow: 7,
+    slidesToShow: 9,
     speed: 500,
     slidesToScroll: 3,
     responsive: [
+      {
+        breakpoint: 1800,
+        settings: {
+          slidesToShow: 8,
+        },
+      },
+      {
+        breakpoint: 1600,
+        settings: {
+          slidesToShow: 7,
+        },
+      },
       {
         breakpoint: 1300,
         settings: {
@@ -36,25 +48,25 @@ const Section = ({ title, children }) => {
         },
       },
       {
-        breakpoint: 1000,
+        breakpoint: 1150,
         settings: {
           slidesToShow: 5,
         },
       },
       {
-        breakpoint: 800,
+        breakpoint: 900,
         settings: {
           slidesToShow: 4,
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 700,
         settings: {
           slidesToShow: 3,
         },
       },
       {
-        breakpoint: 500,
+        breakpoint: 550,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,

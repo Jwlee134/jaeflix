@@ -7,21 +7,56 @@ import Carousel from "react-bootstrap/Carousel";
 import Message from "Components/Message";
 import { Link } from "react-router-dom";
 
-const Container = styled.div`
-  height: 100vh;
+const Container = styled.div``;
+
+const ImgContainer = styled.div`
+  width: 100%;
+  height: 100%;
 `;
 
 const SCarousel = styled(Carousel.Caption)`
-  height: 100%;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 15% 70% 15%;
+  height: calc(100vh - 80px);
+  padding: 0;
+  align-items: center;
   h1 {
     font-size: 40px;
-    margin-top: 80px;
-    margin-bottom: 30px;
     font-weight: 600;
+    line-height: 1.3;
   }
   h2 {
-    margin-top: 30px;
     font-size: 20px;
+    line-height: 1.3;
+  }
+  @media screen and (max-width: 920px) {
+    h1 {
+      font-size: 35px;
+    }
+  }
+  @media screen and (max-width: 805px) {
+    h1 {
+      font-size: 30px;
+    }
+  }
+  @media screen and (max-width: 690px) {
+    h1 {
+      font-size: 25px;
+    }
+    h2 {
+      font-size: 15px;
+    }
+  }
+`;
+
+const Img = styled.img`
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+  @media screen and (max-width: 450px) {
+    width: 100%;
+    height: inherit;
   }
 `;
 
@@ -43,22 +78,22 @@ const HomePresenter = ({ nowPlaying, error, loading }) => (
       <Message text="페이지를 불러올 수 없습니다." />
     ) : (
       <Container>
-        <Carousel>
+        <Carousel interval={null}>
           {nowPlaying &&
             nowPlaying.length > 0 &&
             nowPlaying.map((movie, index) => (
               <Carousel.Item key={index}>
+                {console.log(movie)}
                 <SCarousel>
                   <h1>현재 상영중인 영화들을 만나보세요.</h1>
-                  <div>
+                  <ImgContainer>
                     <Link to={`/movie/${movie.id}`}>
-                      <img
-                        alt={movie.id}
-                        src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+                      <Img
+                        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                       />
-                      <h2>클릭하여 상세 정보로 이동합니다.</h2>
                     </Link>
-                  </div>
+                  </ImgContainer>
+                  <h2>클릭하여 상세 페이지로 이동합니다.</h2>
                 </SCarousel>
                 <Cover
                   src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}

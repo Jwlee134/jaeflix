@@ -58,11 +58,11 @@ const Content = styled.div`
   display: grid;
   grid-template-columns: 3fr 8fr;
   width: 100%;
-  height: calc(100vh-100px);
+  height: calc(100vh - 100px);
   margin-bottom: 100px;
   @media screen and (max-width: 1000px) {
     grid-template-columns: none;
-    grid-template-rows: 30vh calc(70vh - 100px);
+    grid-template-rows: 30vh calc(70vh - 120px);
     ${Cover} {
       margin: 0 auto;
     }
@@ -138,10 +138,11 @@ const DetailPresenter = ({
             </Item>
             <Divider>•</Divider>
             <Item>
-              {result.runtime || result.runtime === 0
-                ? result.runtime
-                : result.episode_run_time[0]}
-              분
+              {result.runtime
+                ? `${result.runtime}분`
+                : result.runtime === 0
+                ? "시간 정보 없음"
+                : `${result.episode_run_time[0]}분`}
             </Item>
             <Divider>•</Divider>
             <Item>
