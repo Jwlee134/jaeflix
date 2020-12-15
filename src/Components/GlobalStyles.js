@@ -24,6 +24,21 @@ const globalStyles = createGlobalStyle`
     #root{
         height:100%;
     }
+    ::-webkit-scrollbar {
+        width: 5px;
+        border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb {
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        background-color: #555;
+        background-clip: padding-box;
+        border-radius: 5px;
+    }
+    ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        background-color: white;
+        border-radius: 5px;
+    }
 `;
 
 export default globalStyles;

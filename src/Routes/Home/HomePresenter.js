@@ -85,7 +85,7 @@ const HomePresenter = ({ nowPlaying, error, loading }) => (
               <Carousel.Item key={index}>
                 {console.log(movie)}
                 <SCarousel>
-                  <h1>현재 상영중인 영화들을 만나보세요.</h1>
+                  <h1>Jaeflix 추천 영화</h1>
                   <ImgContainer>
                     <Link to={`/movie/${movie.id}`}>
                       <Img

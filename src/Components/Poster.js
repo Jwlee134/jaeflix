@@ -20,10 +20,10 @@ const Img = styled.div`
     height: 240px;
   }
   @media screen and (max-width: 600px) {
-    height: 230px;
-  }
-  @media screen and (max-width: 450px) {
     height: 200px;
+  }
+  @media screen and (max-width: 400px) {
+    height: 140px;
   }
 `;
 
@@ -48,6 +48,8 @@ const Rating = styled.div`
 `;
 
 const Detail = styled.div`
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -62,9 +64,6 @@ const Detail = styled.div`
 const ImgContainer = styled.div`
   margin-bottom: 10px;
   &:hover {
-    ${Img} {
-      opacity: 0.3;
-    }
     ${Detail} {
       opacity: 1;
     }
@@ -78,6 +77,7 @@ const ImgContainer = styled.div`
 const Title = styled.span`
   display: block;
   padding-bottom: 5px;
+  line-height: 1.2;
 `;
 
 const Year = styled.span`
@@ -85,29 +85,54 @@ const Year = styled.span`
   color: rgba(255, 255, 255, 0.5);
 `;
 
-const Poster = ({ id, imageUrl, title, rating, year, isMovie = false }) => (
-  <Link to={isMovie ? `/movie/${id}` : `/tv/${id}`}>
+const Poster = ({
+  id,
+  imageUrl,
+  title,
+  rating,
+  year,
+  isMovie = false,
+  isPeople = false,
+}) =>
+  isPeople ? (
     <Container>
       <ImgContainer>
         <Img
+          isContents={false}
           bgUrl={
             imageUrl
               ? `https://image.tmdb.org/t/p/w300${imageUrl}`
               : "/noImg.png"
           }
         />
-        <Detail>상세 보기</Detail>
-        <Rating>
-          <Star>★</Star> <Text>{rating}/10</Text>
-        </Rating>
       </ImgContainer>
-      <Title>
-        {title.length > 18 ? `${title.substring(0, 17)}...` : title}
-      </Title>
-      <Year>{year ? year.substring(0, 4) : "연도 정보 없음"}</Year>
+      <Title>{title}</Title>
+      <Year>{year}</Year>
     </Container>
-  </Link>
-);
+  ) : (
+    <Link to={isMovie ? `/movie/${id}` : `/tv/${id}`}>
+      <Container>
+        <ImgContainer>
+          <Img
+            isContents={true}
+            bgUrl={
+              imageUrl
+                ? `https://image.tmdb.org/t/p/w300${imageUrl}`
+                : "/noImg.png"
+            }
+          />
+          <Detail>상세 보기</Detail>
+          <Rating>
+            <Star>★</Star> <Text>{rating}/10</Text>
+          </Rating>
+        </ImgContainer>
+        <Title>
+          {title.length > 18 ? `${title.substring(0, 17)}...` : title}
+        </Title>
+        <Year>{year ? year.substring(0, 4) : "연도 정보 없음"}</Year>
+      </Container>
+    </Link>
+  );
 
 Poster.propTypes = {
   imageUrl: PropTypes.string,

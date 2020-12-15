@@ -6,6 +6,8 @@ class DetailContainer extends React.Component {
   state = {
     result: null,
     recommends: null,
+    casts: null,
+    crews: null,
     error: null,
     loading: true,
   };
@@ -29,7 +31,10 @@ class DetailContainer extends React.Component {
         const {
           data: { results: recommends },
         } = await moviesApi.recommends(id);
-        this.setState({ result, recommends });
+        const {
+          data: { cast: casts, crew: crews },
+        } = await moviesApi.credits(id);
+        this.setState({ result, recommends, casts, crews });
       } else {
         const { data: result } = await tvApi.tvDetail(id);
         const {
@@ -62,13 +67,15 @@ class DetailContainer extends React.Component {
   }
 
   render() {
-    const { result, recommends, error, loading } = this.state;
+    const { result, recommends, casts, crews, error, loading } = this.state;
     return (
       <DetailPresenter
         result={result}
         error={error}
         loading={loading}
         recommends={recommends}
+        casts={casts}
+        crews={crews}
       />
     );
   }
