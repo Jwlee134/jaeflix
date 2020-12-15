@@ -45,7 +45,7 @@ const Credits = ({ casts, crews }) => (
         </Section>
       </>
     )}
-    {!crews && !casts && <NoCredits>표시할 정보가 없습니다.</NoCredits>}
+    {!crews && !casts && <NoCredits>등록된 정보가 없습니다.</NoCredits>}
   </Container>
 );
 

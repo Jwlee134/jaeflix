@@ -83,7 +83,6 @@ const HomePresenter = ({ nowPlaying, error, loading }) => (
             nowPlaying.length > 0 &&
             nowPlaying.map((movie, index) => (
               <Carousel.Item key={index}>
-                {console.log(movie)}
                 <SCarousel>
                   <h1>Jaeflix 추천 영화</h1>
                   <ImgContainer>

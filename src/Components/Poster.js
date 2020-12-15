@@ -22,6 +22,12 @@ const Img = styled.div`
   @media screen and (max-width: 600px) {
     height: 200px;
   }
+  @media screen and (max-width: 550px) {
+    height: 240px;
+  }
+  @media screen and (max-width: 500px) {
+    height: 210px;
+  }
   @media screen and (max-width: 400px) {
     height: 140px;
   }
