@@ -84,10 +84,11 @@ const Content = styled.div`
   margin-bottom: 50px;
   @media screen and (max-width: 1000px) {
     grid-template-columns: none;
-    grid-template-rows: 30vh 75vh;
+    grid-template-rows: 35vh 75vh;
     height: auto;
     ${Cover} {
       width: 200px;
+      height: 100%;
     }
     ${Data} {
       justify-self: center;
@@ -115,6 +116,11 @@ const Content = styled.div`
     ${Li} {
       font-size: 17px;
     }
+    ${ItemContainer} {
+      ::-webkit-scrollbar {
+        width: 0;
+      }
+    }
   }
   @media screen and (max-width: 400px) {
     ${Overview} {
@@ -122,8 +128,11 @@ const Content = styled.div`
       width: 100%;
     }
     ${Li} {
-      font-size: 13px;
+      font-size: 14px;
     }
+  }
+  @media screen and (max-height: 700px) {
+    grid-template-rows: 45vh 75vh;
   }
 `;
 
@@ -209,7 +218,7 @@ Detail.propTypes = {
   title: PropTypes.string,
   originTitle: PropTypes.string,
   date: PropTypes.string,
-  runtime: PropTypes.number,
+  runtime: PropTypes.array,
   genres: PropTypes.array,
   overview: PropTypes.string,
   rating: PropTypes.number,

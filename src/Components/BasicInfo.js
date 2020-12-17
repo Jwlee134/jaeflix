@@ -3,10 +3,24 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
 
-const Container = styled.div``;
+const Overview = styled.div`
+  margin-top: 15px;
+  line-height: 1.7;
+  opacity: 0.8;
+  font-size: 14px;
+`;
+
+const Container = styled.div`
+  @media screen and (max-width: 400px) {
+    ${Overview},span {
+      font-size: 13px;
+    }
+  }
+`;
 
 const Ul = styled.ul`
   border-left: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
   padding-left: 10px;
 `;
 
@@ -20,12 +34,6 @@ const Li = styled.div`
 const Title = styled.span`
   margin-right: 10px;
   opacity: 0.6;
-`;
-const Overview = styled.div`
-  margin-top: 15px;
-  line-height: 1.7;
-  opacity: 0.8;
-  font-size: 14px;
 `;
 
 const BasicInfo = ({
@@ -65,7 +73,7 @@ const BasicInfo = ({
 
 BasicInfo.propTypes = {
   genres: PropTypes.array,
-  runtime: PropTypes.number,
+  runtime: PropTypes.array,
   overview: PropTypes.string,
   date: PropTypes.string,
   rating: PropTypes.number,

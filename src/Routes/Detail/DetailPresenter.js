@@ -21,6 +21,9 @@ const Container = styled.div`
     padding-left: 30px;
     padding-right: 30px;
   }
+  span {
+    line-height: 1.2;
+  }
 `;
 
 const Backdrop = styled.div`
@@ -35,6 +38,7 @@ const Backdrop = styled.div`
   filter: blur(3px);
   opacity: 0.5;
   z-index: -1;
+  margin-top: 50px;
 `;
 
 const DetailPresenter = ({
