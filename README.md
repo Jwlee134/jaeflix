@@ -20,3 +20,7 @@ Learning React and ES6 by building a movie discovery app.
 - [x] TV show detail
 - [x] Movie detail
 - [x] Search (Movie, TV)
+
+# Preview
+
+Try it on [Netlify](https://admiring-archimedes-d142e9.netlify.app)
