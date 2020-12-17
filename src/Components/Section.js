@@ -9,13 +9,6 @@ const Container = styled.div`
   padding-bottom: 30px;
 `;
 
-const Title = styled.div`
-  font-size: 20px;
-  @media screen and (max-width: 550px) {
-    text-align: center;
-  }
-`;
-
 const StyledSlider = styled(Slider)`
   margin: 25px;
   .slick-slide {
