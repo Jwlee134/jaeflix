@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.js": "/jaefilx/static/js/main.32013cd8.chunk.js",
+    "main.js.map": "/jaefilx/static/js/main.32013cd8.chunk.js.map",
+    "runtime-main.js": "/jaefilx/static/js/runtime-main.08b74974.js",
+    "runtime-main.js.map": "/jaefilx/static/js/runtime-main.08b74974.js.map",
+    "static/css/2.e6942287.chunk.css": "/jaefilx/static/css/2.e6942287.chunk.css",
+    "static/js/2.530109d4.chunk.js": "/jaefilx/static/js/2.530109d4.chunk.js",
+    "static/js/2.530109d4.chunk.js.map": "/jaefilx/static/js/2.530109d4.chunk.js.map",
+    "index.html": "/jaefilx/index.html",
+    "static/css/2.e6942287.chunk.css.map": "/jaefilx/static/css/2.e6942287.chunk.css.map",
+    "static/js/2.530109d4.chunk.js.LICENSE.txt": "/jaefilx/static/js/2.530109d4.chunk.js.LICENSE.txt",
+    "static/media/slick-theme.css": "/jaefilx/static/media/slick.c94f7671.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.08b74974.js",
+    "static/css/2.e6942287.chunk.css",
+    "static/js/2.530109d4.chunk.js",
+    "static/js/main.32013cd8.chunk.js"
+  ]
+}
