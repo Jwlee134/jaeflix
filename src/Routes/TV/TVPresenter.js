@@ -6,6 +6,8 @@ import Loader from "Components/Loader";
 import Message from "Components/Message";
 import Poster from "Components/Poster";
 import { Helmet } from "react-helmet";
+import { SwiperSlide } from "swiper/react";
+import "swiper/swiper.scss";
 
 const Container = styled.div`
   margin-top: 80px;
@@ -24,42 +26,45 @@ const TVPresenter = ({ topRated, airingToday, popular, error, loading }) => (
         {airingToday && airingToday.length > 0 && (
           <Section title="현재 방영중">
             {airingToday.map((show) => (
-              <Poster
-                key={show.id}
-                id={show.id}
-                imageUrl={show.poster_path}
-                title={show.name}
-                rating={show.vote_average}
-                year={show.first_air_date}
-              />
+              <SwiperSlide key={show.id}>
+                <Poster
+                  id={show.id}
+                  imageUrl={show.poster_path}
+                  title={show.name}
+                  rating={show.vote_average}
+                  year={show.first_air_date}
+                />
+              </SwiperSlide>
             ))}
           </Section>
         )}
         {popular && popular.length > 0 && (
           <Section title="인기">
             {popular.map((show) => (
-              <Poster
-                key={show.id}
-                id={show.id}
-                imageUrl={show.poster_path}
-                title={show.name}
-                rating={show.vote_average}
-                year={show.first_air_date}
-              />
+              <SwiperSlide key={show.id}>
+                <Poster
+                  id={show.id}
+                  imageUrl={show.poster_path}
+                  title={show.name}
+                  rating={show.vote_average}
+                  year={show.first_air_date}
+                />
+              </SwiperSlide>
             ))}
           </Section>
         )}
         {topRated && topRated.length > 0 && (
           <Section title="최고 평점">
             {topRated.map((show) => (
-              <Poster
-                key={show.id}
-                id={show.id}
-                imageUrl={show.poster_path}
-                title={show.name}
-                rating={show.vote_average}
-                year={show.first_air_date}
-              />
+              <SwiperSlide key={show.id}>
+                <Poster
+                  id={show.id}
+                  imageUrl={show.poster_path}
+                  title={show.name}
+                  rating={show.vote_average}
+                  year={show.first_air_date}
+                />
+              </SwiperSlide>
             ))}
           </Section>
         )}

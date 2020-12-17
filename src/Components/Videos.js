@@ -16,6 +16,7 @@ const VideoContainer = styled.div`
 const Img = styled.img`
   width: 100%;
   margin: 15px 0px;
+  border-radius: 10px;
 `;
 
 const Name = styled.div`

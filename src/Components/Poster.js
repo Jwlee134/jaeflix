@@ -8,28 +8,31 @@ const Container = styled.div``;
 const Img = styled.div`
   background-image: url(${(props) => props.bgUrl});
   width: 100%;
-  height: 270px;
+  height: 260px;
   background-size: cover;
   background-position: center center;
   border-radius: 5px;
   transition: opacity 0.1s linear;
   @media screen and (max-width: 1000px) {
-    height: 250px;
+    height: 280px;
+  }
+  @media screen and (max-width: 900px) {
+    height: 270px;
   }
   @media screen and (max-width: 800px) {
     height: 240px;
   }
-  @media screen and (max-width: 600px) {
-    height: 200px;
+  @media screen and (max-width: 700px) {
+    height: 220px;
   }
-  @media screen and (max-width: 550px) {
-    height: 240px;
+  @media screen and (max-width: 600px) {
+    height: ${(props) => (props.isContents ? "210px" : "160px")};
   }
   @media screen and (max-width: 500px) {
-    height: 210px;
+    height: ${(props) => (props.isContents ? "200px" : "140px")};
   }
   @media screen and (max-width: 400px) {
-    height: 140px;
+    height: ${(props) => (props.isContents ? "180px" : "120px")};
   }
 `;
 

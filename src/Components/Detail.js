@@ -10,7 +10,7 @@ const Cover = styled.img`
   width: 100%;
   max-height: 100%;
   z-index: 1;
-  border-radius: 5px;
+  border-radius: 10px;
   margin: 0 auto;
 `;
 
@@ -44,6 +44,21 @@ const ItemContainer = styled.div`
   background-color: rgba(0, 0, 0, 0.4);
   padding: 20px;
   overflow: auto;
+  border-radius: 10px;
+  border-top-left-radius: ${(props) => (props.selected ? "0px" : "10px")};
+  ::-webkit-scrollbar {
+    width: 20px;
+  }
+  ::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.7);
+    background-clip: padding-box;
+    border-radius: 20px;
+    border: 5px solid transparent;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0);
+  }
 `;
 
 const Ul = styled.ul`
@@ -65,7 +80,6 @@ const Content = styled.div`
   display: grid;
   grid-template-columns: 3fr 8fr;
   width: 100%;
-  max-width: 100%;
   height: calc(100vh - 100px);
   margin-bottom: 50px;
   @media screen and (max-width: 1000px) {
@@ -73,7 +87,7 @@ const Content = styled.div`
     grid-template-rows: 30vh 75vh;
     height: auto;
     ${Cover} {
-      width: auto;
+      width: 200px;
     }
     ${Data} {
       justify-self: center;
@@ -167,7 +181,9 @@ const Detail = ({
             </Link>
           </Li>
         </Ul>
-        <ItemContainer>
+        <ItemContainer
+          selected={pathname === `/movie/${id}` || pathname === `/tv/${id}`}
+        >
           {pathname === `/movie/${id}` || pathname === `/tv/${id}` ? (
             <BasicInfo
               genres={genres}

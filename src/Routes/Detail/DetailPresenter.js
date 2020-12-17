@@ -8,6 +8,8 @@ import Section from "Components/Section";
 import Poster from "Components/Poster";
 import { withRouter } from "react-router-dom";
 import Detail from "Components/Detail";
+import { SwiperSlide } from "swiper/react";
+import "swiper/swiper.scss";
 
 const Container = styled.div`
   height: 100vh;
@@ -81,28 +83,32 @@ const DetailPresenter = ({
         (isMovie ? (
           <Section title="관련 영화 추천">
             {recommends.map((recommend) => (
-              <Poster
-                key={recommend.id}
-                id={recommend.id}
-                imageUrl={recommend.poster_path}
-                title={recommend.title}
-                year={recommend.release_date}
-                rating={recommend.vote_average}
-                isMovie={true}
-              />
+              <SwiperSlide key={recommend.id}>
+                <Poster
+                  key={recommend.id}
+                  id={recommend.id}
+                  imageUrl={recommend.poster_path}
+                  title={recommend.title}
+                  year={recommend.release_date}
+                  rating={recommend.vote_average}
+                  isMovie={true}
+                />
+              </SwiperSlide>
             ))}
           </Section>
         ) : (
           <Section title="관련 TV 프로그램 추천">
             {recommends.map((recommend) => (
-              <Poster
-                key={recommend.id}
-                id={recommend.id}
-                imageUrl={recommend.poster_path}
-                title={recommend.name}
-                rating={recommend.vote_average}
-                year={recommend.first_air_date}
-              />
+              <SwiperSlide key={recommend.id}>
+                <Poster
+                  key={recommend.id}
+                  id={recommend.id}
+                  imageUrl={recommend.poster_path}
+                  title={recommend.name}
+                  rating={recommend.vote_average}
+                  year={recommend.first_air_date}
+                />
+              </SwiperSlide>
             ))}
           </Section>
         ))}

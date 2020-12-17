@@ -6,6 +6,8 @@ import Loader from "Components/Loader";
 import Message from "Components/Message";
 import Poster from "Components/Poster";
 import { Helmet } from "react-helmet";
+import { SwiperSlide } from "swiper/react";
+import "swiper/swiper.scss";
 
 const Container = styled.div`
   margin-top: 80px;
@@ -24,45 +26,48 @@ const MoviePresenter = ({ topRated, upcoming, popular, error, loading }) => (
         {popular && popular.length > 0 && (
           <Section title="인기">
             {popular.map((movie) => (
-              <Poster
-                key={movie.id}
-                id={movie.id}
-                imageUrl={movie.poster_path}
-                title={movie.title}
-                year={movie.release_date}
-                rating={movie.vote_average}
-                isMovie={true}
-              />
+              <SwiperSlide key={movie.id}>
+                <Poster
+                  id={movie.id}
+                  imageUrl={movie.poster_path}
+                  title={movie.title}
+                  year={movie.release_date}
+                  rating={movie.vote_average}
+                  isMovie={true}
+                />
+              </SwiperSlide>
             ))}
           </Section>
         )}
         {upcoming && upcoming.length > 0 && (
           <Section title="상영 예정">
             {upcoming.map((movie) => (
-              <Poster
-                key={movie.id}
-                id={movie.id}
-                imageUrl={movie.poster_path}
-                title={movie.title}
-                year={movie.release_date}
-                rating={movie.vote_average}
-                isMovie={true}
-              />
+              <SwiperSlide key={movie.id}>
+                <Poster
+                  id={movie.id}
+                  imageUrl={movie.poster_path}
+                  title={movie.title}
+                  year={movie.release_date}
+                  rating={movie.vote_average}
+                  isMovie={true}
+                />
+              </SwiperSlide>
             ))}
           </Section>
         )}
         {topRated && topRated.length > 0 && (
           <Section title="최고 평점">
             {topRated.map((movie) => (
-              <Poster
-                key={movie.id}
-                id={movie.id}
-                imageUrl={movie.poster_path}
-                title={movie.title}
-                year={movie.release_date}
-                rating={movie.vote_average}
-                isMovie={true}
-              />
+              <SwiperSlide key={movie.id}>
+                <Poster
+                  id={movie.id}
+                  imageUrl={movie.poster_path}
+                  title={movie.title}
+                  year={movie.release_date}
+                  rating={movie.vote_average}
+                  isMovie={true}
+                />
+              </SwiperSlide>
             ))}
           </Section>
         )}
