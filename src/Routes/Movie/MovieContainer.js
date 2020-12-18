@@ -4,6 +4,7 @@ import MoviePresenter from "./MoviePresenter";
 
 class MovieContainer extends React.Component {
   state = {
+    nowPlaying: null,
     topRated: null,
     upcoming: null,
     popular: null,
@@ -13,6 +14,9 @@ class MovieContainer extends React.Component {
 
   async componentDidMount() {
     try {
+      const {
+        data: { results: nowPlaying },
+      } = await moviesApi.nowPlaying();
       const {
         data: { results: topRated },
       } = await moviesApi.topRated();
@@ -26,6 +30,7 @@ class MovieContainer extends React.Component {
         topRated,
         upcoming,
         popular,
+        nowPlaying,
       });
     } catch (error) {
       this.setState({
@@ -39,9 +44,17 @@ class MovieContainer extends React.Component {
   }
 
   render() {
-    const { topRated, upcoming, popular, error, loading } = this.state;
+    const {
+      nowPlaying,
+      topRated,
+      upcoming,
+      popular,
+      error,
+      loading,
+    } = this.state;
     return (
       <MoviePresenter
+        nowPlaying={nowPlaying}
         topRated={topRated}
         upcoming={upcoming}
         popular={popular}
