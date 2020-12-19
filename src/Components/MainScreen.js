@@ -4,12 +4,15 @@ import styled from "styled-components";
 import SwiperCore, { Navigation, Thumbs } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.scss";
+import { Link } from "react-router-dom";
 
 SwiperCore.use([Navigation, Thumbs]);
 
 const Container = styled.div`
-  height: 100vh;
+  height: calc(100vh - 50px);
+  margin-top: 50px;
   position: relative;
+  text-shadow: 0px 0px 4px rgba(0, 0, 0, 1);
   .swiper-container-thumbs {
     .swiper-slide {
       cursor: pointer;
@@ -45,11 +48,11 @@ const Title = styled.div`
   position: absolute;
   bottom: 0;
   height: 20%;
-  font-size: 18px;
+  font-size: 17px;
   display: flex;
   align-items: center;
   margin: 10px;
-  text-shadow: 0px 0px 3px rgba(0, 0, 0, 1);
+
   line-height: 1.3;
 `;
 
@@ -57,9 +60,7 @@ const SectionTitle = styled.div`
   font-size: 50px;
   display: flex;
   align-items: center;
-  margin-left: 80px;
   font-weight: 600;
-  text-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
 `;
 
 const BackDrop = styled.div`
@@ -68,25 +69,102 @@ const BackDrop = styled.div`
   background-position: center center;
   background-size: cover;
   width: 100%;
-  height: ${(props) => (props.thumb ? "20vh" : "100vh")};
+  height: ${(props) => (props.thumb ? "20vh" : "calc(100vh - 50px);")};
   z-index: -1;
-  padding-top: 100px;
+  padding: 0px 70px;
+  padding-top: 50px;
 `;
 
-const MainScreen = ({ nowPlaying }) => {
+const SectionData = styled.div`
+  display: flex;
+  justify-content: space-between;
+  height: 50vh;
+  align-items: flex-end;
+  padding: 0px 20px;
+`;
+
+const FirstColumn = styled.div`
+  width: 50%;
+`;
+
+const SecondColumn = styled.div`
+  width: 43%;
+  font-size: 25px;
+  line-height: 1.5;
+  font-weight: 400;
+  position: relative;
+`;
+
+const ContentTitle = styled.div`
+  font-size: 40px;
+  font-weight: 400;
+  margin-bottom: 20px;
+`;
+
+const ContentData = styled.div`
+  font-size: 30px;
+  font-weight: 200;
+  color: #ecf0f1;
+`;
+
+const GoDetail = styled.div`
+  margin-top: 20px;
+  font-size: 25px;
+  color: white;
+  text-decoration: underline;
+`;
+
+const MainScreen = ({ nowPlaying, isShow = false }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
     <Container>
-      {console.log(nowPlaying)}
       <Swiper navigation thumbs={{ swiper: thumbsSwiper }} loop={true}>
-        {nowPlaying.map((movie, index) => (
+        {nowPlaying.map((content, index) => (
           <SwiperSlide key={index}>
             <Item>
               <BackDrop
                 thumb={false}
-                bgUrl={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+                bgUrl={
+                  content.backdrop_path
+                    ? `https://image.tmdb.org/t/p/original${content.backdrop_path}`
+                    : "/noImg.png"
+                }
               >
-                <SectionTitle>현재 상영중</SectionTitle>
+                <SectionTitle>
+                  {isShow ? "현재 방영중" : "현재 상영중"}
+                </SectionTitle>
+                <SectionData>
+                  <FirstColumn>
+                    <ContentTitle>
+                      {isShow ? content.name : content.title}
+                    </ContentTitle>
+                    <ContentData>
+                      <span>
+                        {isShow && !content.first_air_date && "연도 정보 없음"}
+                        {!isShow && !content.release_date && "연도 정보 없음"}
+                        {isShow
+                          ? content.first_air_date.substring(0, 4)
+                          : content.release_date.substring(0, 4)}
+                      </span>
+                      <span> · </span>
+                      <span>
+                        {content.vote_average
+                          ? `평점 ${content.vote_average}`
+                          : "평점 정보 없음"}
+                      </span>
+                    </ContentData>
+                    <Link
+                      to={isShow ? `/tv/${content.id}` : `/movie/${content.id}`}
+                    >
+                      <GoDetail>상세 보기</GoDetail>
+                    </Link>
+                  </FirstColumn>
+                  <SecondColumn>
+                    {content.overview.length > 100
+                      ? `${content.overview.substring(0, 100)}...`
+                      : content.overview}
+                  </SecondColumn>
+                </SectionData>
               </BackDrop>
             </Item>
           </SwiperSlide>
@@ -101,14 +179,18 @@ const MainScreen = ({ nowPlaying }) => {
           spaceBetween={10}
           loop={true}
         >
-          {nowPlaying.map((movie, index) => (
+          {nowPlaying.map((content, index) => (
             <SwiperSlide key={index}>
               <Item>
                 <BackDrop
                   thumb={true}
-                  bgUrl={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+                  bgUrl={
+                    content.backdrop_path
+                      ? `https://image.tmdb.org/t/p/original${content.backdrop_path}`
+                      : "/noImg.png"
+                  }
                 ></BackDrop>
-                <Title>{movie.title}</Title>
+                <Title>{isShow ? content.name : content.title}</Title>
               </Item>
             </SwiperSlide>
           ))}
