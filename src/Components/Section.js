@@ -51,22 +51,22 @@ const Section = ({ title, children, isCredits = false }) => {
           slidesPerGroup={2}
           navigation
           breakpoints={{
-            1800: { slidesPerView: isCredits ? 5 : 8, slidesPerGroup: 5 },
-            1600: { slidesPerView: isCredits ? 5 : 8, slidesPerGroup: 5 },
-            1400: { slidesPerView: isCredits ? 5 : 8, slidesPerGroup: 5 },
-            1200: {
+            1801: { slidesPerView: isCredits ? 5 : 8, slidesPerGroup: 5 },
+            1601: { slidesPerView: isCredits ? 5 : 8, slidesPerGroup: 5 },
+            1401: { slidesPerView: isCredits ? 5 : 8, slidesPerGroup: 5 },
+            1201: {
               slidesPerView: isCredits ? 4 : 7,
               slidesPerGroup: isCredits ? 4 : 5,
             },
-            1000: {
+            1001: {
               slidesPerView: isCredits ? 4 : 7,
               slidesPerGroup: isCredits ? 4 : 5,
             },
-            800: {
+            801: {
               slidesPerView: isCredits ? 4 : 5,
               slidesPerGroup: isCredits ? 4 : 5,
             },
-            600: {
+            601: {
               slidesPerView: isCredits ? 3 : 4,
               slidesPerGroup: isCredits ? 3 : 4,
             },

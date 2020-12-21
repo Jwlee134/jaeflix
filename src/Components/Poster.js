@@ -14,67 +14,67 @@ const Img = styled.div`
   background-position: center center;
   border-radius: 5px;
   transition: opacity 0.1s linear;
-  @media screen and (max-width: 2000px) {
+  @media screen and (max-width: 2001px) {
     height: 300px;
   }
-  @media screen and (max-width: 1900px) {
+  @media screen and (max-width: 1901px) {
     height: 280px;
   }
-  @media screen and (max-width: 1800px) {
+  @media screen and (max-width: 1801px) {
     height: 260px;
   }
-  @media screen and (max-width: 1700px) {
+  @media screen and (max-width: 1701px) {
     height: 240px;
   }
-  @media screen and (max-width: 1600px) {
+  @media screen and (max-width: 1601px) {
     height: 220px;
   }
-  @media screen and (max-width: 1500px) {
+  @media screen and (max-width: 1501px) {
     height: 200px;
   }
-  @media screen and (max-width: 1400px) {
+  @media screen and (max-width: 1401px) {
     height: 220px;
   }
-  @media screen and (max-width: 1300px) {
+  @media screen and (max-width: 1301px) {
     height: 200px;
   }
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1201px) {
     height: 180px;
   }
-  @media screen and (max-width: 1100px) {
+  @media screen and (max-width: 1101px) {
     height: 160px;
   }
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1001px) {
     height: 200px;
   }
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 901px) {
     height: 180px;
   }
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 801px) {
     height: 220px;
   }
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 701px) {
     height: 200px;
   }
-  @media screen and (max-width: 650px) {
+  @media screen and (max-width: 651px) {
     height: 180px;
   }
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 601px) {
     height: ${(props) => (props.isContents ? "210px" : "160px")};
   }
-  @media screen and (max-width: 550px) {
+  @media screen and (max-width: 551px) {
     height: ${(props) => (props.isContents ? "190px" : "140px")};
   }
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 501px) {
     height: ${(props) => (props.isContents ? "170px" : "120px")};
   }
-  @media screen and (max-width: 450px) {
+  @media screen and (max-width: 451px) {
     height: ${(props) => (props.isContents ? "150px" : "100px")};
   }
   @media screen and (max-width: 401px) {
     height: ${(props) => (props.isContents ? "190px" : "140px")};
   }
-  @media screen and (max-width: 350px) {
+  @media screen and (max-width: 351px) {
     height: ${(props) => (props.isContents ? "170px" : "120px")};
   }
 `;
