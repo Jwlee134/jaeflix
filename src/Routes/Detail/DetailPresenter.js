@@ -81,15 +81,17 @@ const DetailPresenter = ({
         casts={casts}
         crews={crews}
         videos={result.videos.results}
+        imdbId={result.imdb_id}
+        countries={result.production_countries}
+        companies={result.production_companies}
       />
       {recommends &&
         recommends.length > 0 &&
         (isMovie ? (
           <Section title="관련 영화 추천">
-            {recommends.map((recommend) => (
-              <SwiperSlide key={recommend.id}>
+            {recommends.map((recommend, index) => (
+              <SwiperSlide key={index}>
                 <Poster
-                  key={recommend.id}
                   id={recommend.id}
                   imageUrl={recommend.poster_path}
                   title={recommend.title}
@@ -102,10 +104,9 @@ const DetailPresenter = ({
           </Section>
         ) : (
           <Section title="관련 TV 프로그램 추천">
-            {recommends.map((recommend) => (
-              <SwiperSlide key={recommend.id}>
+            {recommends.map((recommend, index) => (
+              <SwiperSlide key={index}>
                 <Poster
-                  key={recommend.id}
                   id={recommend.id}
                   imageUrl={recommend.poster_path}
                   title={recommend.name}
@@ -116,6 +117,21 @@ const DetailPresenter = ({
             ))}
           </Section>
         ))}
+      {result.seasons && result.seasons.length > 0 && (
+        <Section title="시즌 정보">
+          {result.seasons.map((season, index) => (
+            <SwiperSlide key={index}>
+              <Poster
+                id={season.id}
+                imageUrl={season.poster_path}
+                title={season.name}
+                year={season.air_date}
+                rating={null}
+              />
+            </SwiperSlide>
+          ))}
+        </Section>
+      )}
     </Container>
   );
 };
