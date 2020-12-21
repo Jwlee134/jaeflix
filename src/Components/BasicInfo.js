@@ -42,6 +42,7 @@ const BasicInfo = ({
   overview,
   date,
   rating,
+  countries,
   location: { pathname },
 }) => (
   <Container>
@@ -53,9 +54,12 @@ const BasicInfo = ({
       <Li>
         <Title>장르</Title>
         <span>
-          {genres.map((genre, index) =>
-            index === genres.length - 1 ? genre.name : `${genre.name} / `
-          )}
+          {genres &&
+            genres.length > 0 &&
+            genres.map((genre, index) =>
+              index === genres.length - 1 ? genre.name : `${genre.name} / `
+            )}
+          {genres.length === 0 && "등록되지 않음"}
         </span>
       </Li>
       <Li>
@@ -66,6 +70,19 @@ const BasicInfo = ({
         <Title>평점</Title>
         <span>{rating ? rating : "등록되지 않음"}</span>
       </Li>
+      <Li>
+        <Title>국가</Title>
+        <span>
+          {countries &&
+            countries.length > 0 &&
+            countries.map((country, index) =>
+              index === countries.length - 1
+                ? country.name
+                : `${country.name} / `
+            )}
+          {countries.length === 0 && "등록되지 않음"}
+        </span>
+      </Li>
     </Ul>
     <Overview>{overview ? overview : "등록된 소개글이 없습니다."}</Overview>
   </Container>
@@ -73,10 +90,10 @@ const BasicInfo = ({
 
 BasicInfo.propTypes = {
   genres: PropTypes.array,
-  runtime: PropTypes.array,
   overview: PropTypes.string,
   date: PropTypes.string,
   rating: PropTypes.number,
+  countries: PropTypes.array,
 };
 
 export default withRouter(BasicInfo);
