@@ -8,31 +8,74 @@ const Container = styled.div``;
 const Img = styled.div`
   background-image: url(${(props) => props.bgUrl});
   width: 100%;
-  height: 260px;
-  background-size: cover;
+  height: 300px;
+  background-size: ${(props) => (props.isCompany ? "contain" : "cover")};
+  background-repeat: no-repeat;
   background-position: center center;
   border-radius: 5px;
   transition: opacity 0.1s linear;
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 2000px) {
+    height: 300px;
+  }
+  @media screen and (max-width: 1900px) {
     height: 280px;
   }
-  @media screen and (max-width: 900px) {
-    height: 270px;
+  @media screen and (max-width: 1800px) {
+    height: 260px;
   }
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 1700px) {
     height: 240px;
   }
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 1600px) {
     height: 220px;
+  }
+  @media screen and (max-width: 1500px) {
+    height: 200px;
+  }
+  @media screen and (max-width: 1400px) {
+    height: 220px;
+  }
+  @media screen and (max-width: 1300px) {
+    height: 200px;
+  }
+  @media screen and (max-width: 1200px) {
+    height: 180px;
+  }
+  @media screen and (max-width: 1100px) {
+    height: 160px;
+  }
+  @media screen and (max-width: 1000px) {
+    height: 200px;
+  }
+  @media screen and (max-width: 900px) {
+    height: 180px;
+  }
+  @media screen and (max-width: 800px) {
+    height: 220px;
+  }
+  @media screen and (max-width: 700px) {
+    height: 200px;
+  }
+  @media screen and (max-width: 650px) {
+    height: 180px;
   }
   @media screen and (max-width: 600px) {
     height: ${(props) => (props.isContents ? "210px" : "160px")};
   }
+  @media screen and (max-width: 550px) {
+    height: ${(props) => (props.isContents ? "190px" : "140px")};
+  }
   @media screen and (max-width: 500px) {
-    height: ${(props) => (props.isContents ? "200px" : "140px")};
+    height: ${(props) => (props.isContents ? "170px" : "120px")};
+  }
+  @media screen and (max-width: 450px) {
+    height: ${(props) => (props.isContents ? "150px" : "100px")};
   }
   @media screen and (max-width: 400px) {
-    height: ${(props) => (props.isContents ? "180px" : "120px")};
+    height: ${(props) => (props.isContents ? "190px" : "140px")};
+  }
+  @media screen and (max-width: 350px) {
+    height: ${(props) => (props.isContents ? "170px" : "120px")};
   }
 `;
 
@@ -101,29 +144,49 @@ const Poster = ({
   rating,
   year,
   isMovie = false,
-  isPeople = false,
+  isCredits = false,
+  isCompany = false,
 }) =>
-  isPeople ? (
-    <Container>
-      <ImgContainer>
-        <Img
-          isContents={false}
-          bgUrl={
-            imageUrl
-              ? `https://image.tmdb.org/t/p/w300${imageUrl}`
-              : "/noImg.png"
-          }
-        />
-      </ImgContainer>
-      <Title>{title}</Title>
-      <Year>{year}</Year>
-    </Container>
+  isCredits ? (
+    isCompany ? (
+      <Container>
+        <ImgContainer>
+          <Img
+            isContents={false}
+            isCompany={true}
+            bgUrl={
+              imageUrl
+                ? `https://image.tmdb.org/t/p/w300${imageUrl}`
+                : "/noImg.png"
+            }
+          />
+        </ImgContainer>
+        <Title>{title}</Title>
+      </Container>
+    ) : (
+      <Container>
+        <ImgContainer>
+          <Img
+            isContents={false}
+            isCompany={false}
+            bgUrl={
+              imageUrl
+                ? `https://image.tmdb.org/t/p/w300${imageUrl}`
+                : "/noImg.png"
+            }
+          />
+        </ImgContainer>
+        <Title>{title}</Title>
+        <Year>{year}</Year>
+      </Container>
+    )
   ) : (
     <Link to={isMovie ? `/movie/${id}` : `/tv/${id}`}>
       <Container>
         <ImgContainer>
           <Img
             isContents={true}
+            isCompany={false}
             bgUrl={
               imageUrl
                 ? `https://image.tmdb.org/t/p/w300${imageUrl}`
@@ -131,9 +194,13 @@ const Poster = ({
             }
           />
           <Detail>상세 보기</Detail>
-          <Rating>
-            <Star>★</Star> <Text>{rating}/10</Text>
-          </Rating>
+          {rating ? (
+            <Rating>
+              <Star>★</Star> <Text>{rating}/10</Text>
+            </Rating>
+          ) : (
+            ""
+          )}
         </ImgContainer>
         <Title>
           {title.length > 18 ? `${title.substring(0, 17)}...` : title}
@@ -150,6 +217,7 @@ Poster.propTypes = {
   rating: PropTypes.number,
   year: PropTypes.string,
   isMovie: PropTypes.bool,
+  isCompany: PropTypes.bool,
 };
 
 export default Poster;

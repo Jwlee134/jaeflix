@@ -22,6 +22,9 @@ const Container = styled.div`
   .swiper-button-disabled {
     opacity: 0;
   }
+  @media screen and (max-width: 500px) {
+    padding: 10px 10px;
+  }
   @media screen and (max-width: 700px) {
     .swiper-button-next,
     .swiper-button-prev {
@@ -37,7 +40,7 @@ const Title = styled.div`
   }
 `;
 
-const Section = ({ title, children, isPeople = false }) => {
+const Section = ({ title, children, isCredits = false }) => {
   return (
     <>
       <Title>{title}</Title>
@@ -48,22 +51,26 @@ const Section = ({ title, children, isPeople = false }) => {
           slidesPerGroup={2}
           navigation
           breakpoints={{
-            1800: { slidesPerView: isPeople ? 6 : 9, slidesPerGroup: 5 },
-            1600: { slidesPerView: isPeople ? 5 : 8, slidesPerGroup: 5 },
-            1400: { slidesPerView: isPeople ? 5 : 7, slidesPerGroup: 5 },
+            1800: { slidesPerView: isCredits ? 5 : 8, slidesPerGroup: 5 },
+            1600: { slidesPerView: isCredits ? 5 : 8, slidesPerGroup: 5 },
+            1400: { slidesPerView: isCredits ? 5 : 8, slidesPerGroup: 5 },
             1200: {
-              slidesPerView: isPeople ? 4 : 6,
-              slidesPerGroup: isPeople ? 4 : 5,
+              slidesPerView: isCredits ? 4 : 7,
+              slidesPerGroup: isCredits ? 4 : 5,
             },
             1000: {
-              slidesPerView: isPeople ? 3 : 5,
-              slidesPerGroup: isPeople ? 3 : 5,
+              slidesPerView: isCredits ? 4 : 7,
+              slidesPerGroup: isCredits ? 4 : 5,
             },
             800: {
-              slidesPerView: isPeople ? 3 : 4,
-              slidesPerGroup: isPeople ? 3 : 4,
+              slidesPerView: isCredits ? 4 : 5,
+              slidesPerGroup: isCredits ? 4 : 5,
             },
-            500: { slidesPerView: 3, slidesPerGroup: 3 },
+            600: {
+              slidesPerView: isCredits ? 3 : 4,
+              slidesPerGroup: isCredits ? 3 : 4,
+            },
+            400: { slidesPerView: 3, slidesPerGroup: 3 },
           }}
         >
           {children}
@@ -75,7 +82,7 @@ const Section = ({ title, children, isPeople = false }) => {
 
 Section.propTypes = {
   title: PropTypes.string.isRequired,
-  isPeople: PropTypes.bool,
+  isCredits: PropTypes.bool,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,

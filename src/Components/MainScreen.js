@@ -8,30 +8,6 @@ import { Link } from "react-router-dom";
 
 SwiperCore.use([Navigation, Thumbs]);
 
-const Container = styled.div`
-  height: calc(100vh - 50px);
-  margin-top: 50px;
-  position: relative;
-  text-shadow: 0px 0px 4px rgba(0, 0, 0, 1);
-  .swiper-container-thumbs {
-    .swiper-slide {
-      cursor: pointer;
-    }
-    .swiper-slide-thumb-active {
-      border: 2px solid white;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-  }
-  .swiper-button-next,
-  .swiper-button-prev {
-    color: rgba(255, 255, 255, 0.8);
-  }
-  .swiper-button-disabled {
-    opacity: 0;
-  }
-`;
-
 const ThumbsContainer = styled.div`
   position: absolute;
   width: 100%;
@@ -73,14 +49,26 @@ const BackDrop = styled.div`
   z-index: -1;
   padding: 0px 70px;
   padding-top: 50px;
+  @media screen and (max-height: 700px) {
+    height: ${(props) => (props.thumb ? "25vh" : "calc(100vh - 50px);")};
+  }
 `;
 
 const SectionData = styled.div`
   display: flex;
   justify-content: space-between;
-  height: 50vh;
+  height: 58vh;
   align-items: flex-end;
   padding: 0px 20px;
+  @media screen and (max-height: 800px) {
+    height: 55vh;
+  }
+  @media screen and (max-height: 700px) {
+    height: 45vh;
+  }
+  @media screen and (max-height: 600px) {
+    height: 40vh;
+  }
 `;
 
 const FirstColumn = styled.div`
@@ -99,6 +87,7 @@ const ContentTitle = styled.div`
   font-size: 40px;
   font-weight: 400;
   margin-bottom: 20px;
+  line-height: 1.3;
 `;
 
 const ContentData = styled.div`
@@ -112,6 +101,85 @@ const GoDetail = styled.div`
   font-size: 25px;
   color: white;
   text-decoration: underline;
+`;
+
+const Container = styled.div`
+  height: calc(100vh - 50px);
+  margin-top: 50px;
+  position: relative;
+  text-shadow: 0px 0px 4px rgba(0, 0, 0, 1);
+  .swiper-container-thumbs {
+    .swiper-slide {
+      cursor: pointer;
+    }
+    .swiper-slide-thumb-active {
+      border: 2px solid white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  }
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  .swiper-button-disabled {
+    opacity: 0;
+  }
+  @media screen and (max-width: 1400px) {
+    ${SecondColumn} {
+      font-size: 20px;
+    }
+  }
+  @media screen and (max-width: 1200px) {
+    ${SecondColumn} {
+      font-size: 16px;
+    }
+    ${SectionData} {
+      padding: 0;
+    }
+  }
+  @media screen and (max-width: 750px) {
+    ${FirstColumn} {
+      width: 100%;
+    }
+    ${SecondColumn} {
+      width: 0%;
+      display: none;
+    }
+    ${ContentTitle} {
+      font-size: 30px;
+    }
+    ${ContentData} {
+      font-size: 20px;
+    }
+    ${GoDetail} {
+      font-size: 20px;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    ${SectionTitle} {
+      justify-content: center;
+    }
+  }
+  @media screen and (max-width: 450px) {
+    ${SectionTitle} {
+      font-size: 40px;
+    }
+    ${ContentTitle} {
+      font-size: 25px;
+    }
+    ${ContentData} {
+      font-size: 17px;
+    }
+    ${GoDetail} {
+      font-size: 17px;
+    }
+  }
+  @media screen and (max-width: 350px) {
+    ${SectionTitle} {
+      font-size: 30px;
+    }
+  }
 `;
 
 const MainScreen = ({ nowPlaying, isShow = false }) => {
@@ -175,9 +243,26 @@ const MainScreen = ({ nowPlaying, isShow = false }) => {
           onSwiper={setThumbsSwiper}
           watchSlidesVisibility
           watchSlidesProgress
-          slidesPerView={5}
+          slidesPerView={2}
           spaceBetween={10}
           loop={true}
+          breakpoints={{
+            2000: {
+              slidesPerView: 6,
+            },
+            1600: {
+              slidesPerView: 5,
+            },
+            1200: {
+              slidesPerView: 4,
+            },
+            800: {
+              slidesPerView: 3,
+            },
+            500: {
+              slidesPerView: 3,
+            },
+          }}
         >
           {nowPlaying.map((content, index) => (
             <SwiperSlide key={index}>
