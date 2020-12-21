@@ -5,6 +5,8 @@ import { Link, withRouter } from "react-router-dom";
 import BasicInfo from "./BasicInfo";
 import Credits from "./Credits";
 import Videos from "./Videos";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faImdb } from "@fortawesome/free-brands-svg-icons";
 
 const Cover = styled.img`
   width: 100%;
@@ -14,9 +16,12 @@ const Cover = styled.img`
   margin: 0 auto;
 `;
 
-const Title = styled.div`
-  font-size: 40px;
+const TitleContainer = styled.div`
   margin-bottom: 15px;
+`;
+
+const Title = styled.span`
+  font-size: 40px;
 `;
 
 const Overview = styled.p`
@@ -87,8 +92,7 @@ const Content = styled.div`
     grid-template-rows: 35vh 75vh;
     height: auto;
     ${Cover} {
-      width: 200px;
-      height: 100%;
+      width: auto;
     }
     ${Data} {
       justify-self: center;
@@ -107,6 +111,7 @@ const Content = styled.div`
     }
   }
   @media screen and (max-width: 500px) {
+    margin-bottom: 0px;
     ${Title} {
       font-size: 30px;
     }
@@ -131,9 +136,6 @@ const Content = styled.div`
       font-size: 14px;
     }
   }
-  @media screen and (max-height: 700px) {
-    grid-template-rows: 45vh 75vh;
-  }
 `;
 
 const Divider = styled.span`
@@ -141,6 +143,11 @@ const Divider = styled.span`
   opacity: 0.8;
   font-weight: 200;
   font-size: 15px;
+`;
+
+const SFontAwesomeIcon = styled(FontAwesomeIcon)`
+  font-size: 18px;
+  margin-left: 10px;
 `;
 
 const Detail = ({
@@ -156,6 +163,9 @@ const Detail = ({
   casts,
   crews,
   videos,
+  imdbId,
+  countries,
+  companies,
   location: { pathname },
 }) => {
   const isMovie = pathname.includes("/movie/");
@@ -165,7 +175,14 @@ const Detail = ({
         src={imgUrl ? `https://image.tmdb.org/t/p/w500${imgUrl}` : "/noImg.png"}
       />
       <Data>
-        <Title>{title}</Title>
+        <TitleContainer>
+          <Title>{title}</Title>
+          {imdbId && (
+            <a href={`https://www.imdb.com/title/${imdbId}`} target="blank">
+              <SFontAwesomeIcon icon={faImdb} />
+            </a>
+          )}
+        </TitleContainer>
         <BasicData>
           {pathname.includes("/movie/") ? "영화" : "TV 프로그램"}
         </BasicData>
@@ -181,7 +198,7 @@ const Detail = ({
           </Li>
           <Li selected={pathname.includes("credits")}>
             <Link to={isMovie ? `/movie/${id}/credits` : `/tv/${id}/credits`}>
-              감독/출연
+              참여
             </Link>
           </Li>
           <Li selected={pathname.includes("videos")}>
@@ -200,9 +217,10 @@ const Detail = ({
               overview={overview}
               date={date}
               rating={rating}
+              countries={countries}
             />
           ) : pathname.includes("credits") ? (
-            <Credits casts={casts} crews={crews} />
+            <Credits casts={casts} crews={crews} companies={companies} />
           ) : pathname.includes("videos") ? (
             <Videos videos={videos} />
           ) : null}
@@ -218,12 +236,14 @@ Detail.propTypes = {
   title: PropTypes.string,
   originTitle: PropTypes.string,
   date: PropTypes.string,
-  runtime: PropTypes.array,
   genres: PropTypes.array,
   overview: PropTypes.string,
   rating: PropTypes.number,
   casts: PropTypes.array,
   crews: PropTypes.array,
+  imdbId: PropTypes.string,
+  countries: PropTypes.array,
+  companies: PropTypes.array,
 };
 
 export default withRouter(Detail);
