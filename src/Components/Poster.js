@@ -71,7 +71,7 @@ const Img = styled.div`
   @media screen and (max-width: 450px) {
     height: ${(props) => (props.isContents ? "150px" : "100px")};
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 401px) {
     height: ${(props) => (props.isContents ? "190px" : "140px")};
   }
   @media screen and (max-width: 350px) {

@@ -70,7 +70,7 @@ const Section = ({ title, children, isCredits = false }) => {
               slidesPerView: isCredits ? 3 : 4,
               slidesPerGroup: isCredits ? 3 : 4,
             },
-            400: { slidesPerView: 3, slidesPerGroup: 3 },
+            401: { slidesPerView: 3, slidesPerGroup: 3 },
           }}
         >
           {children}

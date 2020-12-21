@@ -92,7 +92,7 @@ const Content = styled.div`
     grid-template-rows: 35vh 75vh;
     height: auto;
     ${Cover} {
-      width: auto;
+      width: 180px;
     }
     ${Data} {
       justify-self: center;
