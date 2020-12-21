@@ -13,11 +13,11 @@ const NoCredits = styled.div`
   opacity: 0.8;
 `;
 
-const Credits = ({ casts, crews }) => (
+const Credits = ({ casts, crews, companies }) => (
   <Container>
     {crews && casts && (
       <>
-        <Section title="제작" isPeople={true}>
+        <Section title="제작" isCredits={true}>
           {crews &&
             crews.length > 0 &&
             crews.map((crew, index) => (
@@ -26,13 +26,13 @@ const Credits = ({ casts, crews }) => (
                   id={crew.id}
                   title={crew.name}
                   year={crew.department}
-                  isPeople={true}
+                  isCredits={true}
                   imageUrl={crew.profile_path}
                 />
               </SwiperSlide>
             ))}
         </Section>
-        <Section title="배우" isPeople={true}>
+        <Section title="출연" isCredits={true}>
           {casts &&
             casts.length > 0 &&
             casts.map((cast, index) => (
@@ -41,8 +41,23 @@ const Credits = ({ casts, crews }) => (
                   id={cast.id}
                   title={cast.name}
                   year={cast.character}
-                  isPeople={true}
+                  isCredits={true}
                   imageUrl={cast.profile_path}
+                />
+              </SwiperSlide>
+            ))}
+        </Section>
+        <Section title="배급" isCredits={true}>
+          {companies &&
+            companies.length > 0 &&
+            companies.map((company, index) => (
+              <SwiperSlide key={index}>
+                <Poster
+                  id={company.id}
+                  title={company.name}
+                  isCredits={true}
+                  imageUrl={company.logo_path}
+                  isCompany={true}
                 />
               </SwiperSlide>
             ))}
@@ -56,6 +71,7 @@ const Credits = ({ casts, crews }) => (
 Credits.propTypes = {
   casts: PropTypes.array,
   crews: PropTypes.array,
+  companies: PropTypes.array,
 };
 
 export default Credits;
