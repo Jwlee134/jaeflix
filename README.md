@@ -23,4 +23,4 @@ Learning React and ES6 by building a movie discovery app.
 
 # Preview
 
-Try it on [Netlify](https://admiring-archimedes-d142e9.netlify.app)
+Try it on [Netlify](https://jaeflix.netlify.app)
