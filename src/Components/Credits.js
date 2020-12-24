@@ -17,51 +17,57 @@ const Credits = ({ casts, crews, companies }) => (
   <Container>
     {crews && casts && (
       <>
-        <Section title="제작" isCredits={true}>
-          {crews &&
-            crews.length > 0 &&
-            crews.map((crew, index) => (
-              <SwiperSlide key={index}>
-                <Poster
-                  id={crew.id}
-                  title={crew.name}
-                  year={crew.department}
-                  isCredits={true}
-                  imageUrl={crew.profile_path}
-                />
-              </SwiperSlide>
-            ))}
-        </Section>
-        <Section title="출연" isCredits={true}>
-          {casts &&
-            casts.length > 0 &&
-            casts.map((cast, index) => (
-              <SwiperSlide key={index}>
-                <Poster
-                  id={cast.id}
-                  title={cast.name}
-                  year={cast.character}
-                  isCredits={true}
-                  imageUrl={cast.profile_path}
-                />
-              </SwiperSlide>
-            ))}
-        </Section>
-        <Section title="배급" isCredits={true}>
-          {companies &&
-            companies.length > 0 &&
-            companies.map((company, index) => (
-              <SwiperSlide key={index}>
-                <Poster
-                  id={company.id}
-                  title={company.name}
-                  isCredits={true}
-                  imageUrl={company.logo_path}
-                  isCompany={true}
-                />
-              </SwiperSlide>
-            ))}
-        </Section>
+        {crews.length > 0 && (
+          <Section title="제작" isCredits={true}>
+            {crews &&
+              crews.length > 0 &&
+              crews.map((crew, index) => (
+                <SwiperSlide key={index}>
+                  <Poster
+                    id={crew.id}
+                    title={crew.name}
+                    year={crew.department}
+                    isCredits={true}
+                    imageUrl={crew.profile_path}
+                  />
+                </SwiperSlide>
+              ))}
+          </Section>
+        )}
+        {casts.length > 0 && (
+          <Section title="출연" isCredits={true}>
+            {casts &&
+              casts.length > 0 &&
+              casts.map((cast, index) => (
+                <SwiperSlide key={index}>
+                  <Poster
+                    id={cast.id}
+                    title={cast.name}
+                    year={cast.character}
+                    isCredits={true}
+                    imageUrl={cast.profile_path}
+                  />
+                </SwiperSlide>
+              ))}
+          </Section>
+        )}
+        {companies.length > 0 && (
+          <Section title="배급" isCredits={true}>
+            {companies &&
+              companies.length > 0 &&
+              companies.map((company, index) => (
+                <SwiperSlide key={index}>
+                  <Poster
+                    id={company.id}
+                    title={company.name}
+                    isCredits={true}
+                    imageUrl={company.logo_path}
+                    isCompany={true}
+                  />
+                </SwiperSlide>
+              ))}
+          </Section>
+        )}
       </>
     )}
     {!crews && !casts && <NoCredits>등록된 정보가 없습니다.</NoCredits>}

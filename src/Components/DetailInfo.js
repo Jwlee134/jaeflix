@@ -150,7 +150,7 @@ const SFontAwesomeIcon = styled(FontAwesomeIcon)`
   margin-left: 10px;
 `;
 
-const Detail = ({
+const DetailInfo = ({
   id,
   imgUrl,
   title,
@@ -230,7 +230,7 @@ const Detail = ({
   );
 };
 
-Detail.propTypes = {
+DetailInfo.propTypes = {
   id: PropTypes.number,
   imgUrl: PropTypes.string,
   title: PropTypes.string,
@@ -246,4 +246,4 @@ Detail.propTypes = {
   companies: PropTypes.array,
 };
 
-export default withRouter(Detail);
+export default withRouter(DetailInfo);
