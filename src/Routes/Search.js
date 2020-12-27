@@ -1,6 +1,5 @@
 import { moviesApi, tvApi } from "api";
 import React, { useState } from "react";
-import styled from "styled-components";
 import Loader from "Components/Loader";
 import Section from "Components/Section";
 import Message from "Components/Message";
@@ -8,23 +7,7 @@ import Poster from "Components/Poster";
 import { Helmet } from "react-helmet";
 import { SwiperSlide } from "swiper/react";
 import "swiper/swiper.scss";
-
-const Container = styled.div`
-  margin-top: 80px;
-  padding: 0px 20px;
-  height: 100%;
-`;
-
-const Form = styled.form`
-  margin-bottom: 50px;
-  width: 100%;
-`;
-
-const Input = styled.input`
-  all: unset;
-  font-size: 30px;
-  width: 100%;
-`;
+import { Container, Form, Input } from "Styles/Search";
 
 const Search = () => {
   const [results, setResults] = useState({

@@ -1,6 +1,5 @@
 import { moviesApi, tvApi } from "api";
 import React, { useCallback, useEffect, useState } from "react";
-import styled from "styled-components";
 import Loader from "Components/Loader";
 import { Helmet } from "react-helmet";
 import Message from "Components/Message";
@@ -9,36 +8,7 @@ import Poster from "Components/Poster";
 import DetailInfo from "Components/DetailInfo";
 import { SwiperSlide } from "swiper/react";
 import "swiper/swiper.scss";
-
-const Container = styled.div`
-  height: 100vh;
-  width: 100%;
-  position: relative;
-  padding: 30px;
-  padding-top: 100px;
-  @media screen and (max-width: 400px) {
-    padding-left: 30px;
-    padding-right: 30px;
-  }
-  span {
-    line-height: 1.2;
-  }
-`;
-
-const Backdrop = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url(${(props) => props.bgImg});
-  background-position: center center;
-  background-size: cover;
-  filter: blur(3px);
-  opacity: 0.5;
-  z-index: -1;
-  margin-top: 50px;
-`;
+import { Backdrop, Container } from "Styles/Detail";
 
 const Detail = ({
   match: {
@@ -92,9 +62,7 @@ const Detail = ({
 
   useEffect(() => {
     fetchData();
-    return () => {
-      setLoading(true);
-    };
+    return () => setLoading(true);
   }, [fetchData]);
 
   return loading ? (
