@@ -1,28 +1,38 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import Section from "Components/Section";
-import Loader from "Components/Loader";
-import Message from "Components/Message";
-import Poster from "Components/Poster";
-import { Helmet } from "react-helmet";
-import { SwiperSlide } from "swiper/react";
+import React, { useEffect } from "react";
 import "swiper/swiper.scss";
+import styled from "styled-components";
+import { Helmet } from "react-helmet";
+import Loader from "Components/Loader";
 import MainScreen from "Components/MainScreen";
+import Section from "Components/Section";
+import Poster from "Components/Poster";
+import Message from "Components/Message";
+import { SwiperSlide } from "swiper/react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchMovies } from "store/movies";
 
 const Container = styled.div`
   margin-top: 80px;
   padding: 0px 20px;
 `;
 
-const MoviePresenter = ({
-  nowPlaying,
-  topRated,
-  upcoming,
-  popular,
-  error,
-  loading,
-}) => {
+const Movie = () => {
+  const {
+    nowPlaying,
+    topRated,
+    popular,
+    upcoming,
+    error,
+    loading,
+  } = useSelector((state) => state.movies);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchMovies());
+  }, [dispatch]);
+
+  if (loading) return <Loader />;
+
   return (
     <>
       <Helmet>
@@ -90,13 +100,4 @@ const MoviePresenter = ({
   );
 };
 
-MoviePresenter.propTypes = {
-  nowPlaying: PropTypes.array,
-  topRated: PropTypes.array,
-  upcoming: PropTypes.array,
-  popular: PropTypes.array,
-  error: PropTypes.string,
-  loading: PropTypes.bool.isRequired,
-};
-
-export default MoviePresenter;
+export default Movie;

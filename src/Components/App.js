@@ -1,6 +1,6 @@
 import React from "react";
 import Router from "Components/Router";
-import GlobalStyles from "Components/globalStyles";
+import GlobalStyles from "styles/globalStyles";
 
 class App extends React.Component {
   render() {
