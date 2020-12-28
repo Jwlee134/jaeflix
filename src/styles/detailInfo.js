@@ -79,10 +79,9 @@ export const Content = styled.div`
   grid-template-columns: 3fr 8fr;
   width: 100%;
   height: calc(100vh - 100px);
-  margin-bottom: 50px;
   @media screen and (max-width: 1000px) {
     grid-template-columns: none;
-    grid-template-rows: auto auto;
+    grid-template-rows: auto 90vh;
     height: auto;
     ${Cover} {
       width: 180px;

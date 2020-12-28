@@ -2,17 +2,17 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { moviesApi } from "api";
 
 const initialState = {
-  nowPlaying: [],
-  topRated: [],
-  upcoming: [],
-  popular: [],
-  loading: false,
+  nowPlaying: null,
+  topRated: null,
+  upcoming: null,
+  popular: null,
+  loading: true,
   error: null,
 };
 
 export const fetchMovies = createAsyncThunk(
   "movies/fetchMovies",
-  async (_, rejectWithValue) => {
+  async (_, { rejectWithValue }) => {
     try {
       const {
         data: { results: nowPlaying },
@@ -38,15 +38,16 @@ const movieSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    [fetchMovies.pending]: (state, action) => {
-      state.loading = true;
-    },
     [fetchMovies.fulfilled]: (state, action) => {
       const { nowPlaying, topRated, popular, upcoming } = action.payload;
       state.nowPlaying = nowPlaying;
       state.topRated = topRated;
       state.popular = popular;
       state.upcoming = upcoming;
+      state.loading = false;
+    },
+    [fetchMovies.rejected]: (state, action) => {
+      state.error = action.payload;
       state.loading = false;
     },
   },
