@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
-import { Container, Li, Overview, Title, Ul } from "Styles/BasicInfo";
+import { Container, Li, Overview, Title, Ul } from "styles/basicInfo";
 
 const BasicInfo = ({
   genres,

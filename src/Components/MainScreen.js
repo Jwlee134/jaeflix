@@ -17,7 +17,7 @@ import {
   SectionTitle,
   ThumbsContainer,
   Title,
-} from "Styles/MainScreen";
+} from "styles/mainScreen";
 
 SwiperCore.use([Navigation, Thumbs]);
 

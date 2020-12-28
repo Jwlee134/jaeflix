@@ -11,7 +11,7 @@ import {
   Text,
   Title,
   Year,
-} from "Styles/Poster";
+} from "styles/poster";
 
 const Poster = ({
   id,

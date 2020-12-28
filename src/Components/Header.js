@@ -1,6 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import { Item, List, SHeader, SLink } from "Styles/Header";
+import { Item, List, SHeader, SLink } from "styles/header";
 
 const Header = ({ location: { pathname } }) => (
   <SHeader>

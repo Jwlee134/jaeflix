@@ -5,7 +5,7 @@ import { Swiper } from "swiper/react";
 import "swiper/swiper.scss";
 import "swiper/components/navigation/navigation.scss";
 import "swiper/components/pagination/pagination.scss";
-import { Container, Title } from "Styles/Section";
+import { Container, Title } from "styles/section";
 
 SwiperCore.use([Navigation]);
 

@@ -17,7 +17,7 @@ import {
   Title,
   TitleContainer,
   Ul,
-} from "Styles/DetailInfo";
+} from "styles/detailInfo";
 
 const DetailInfo = ({
   id,

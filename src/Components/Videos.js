@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Container, Img, Name, NoVideos, VideoContainer } from "Styles/Video";
+import { Container, Img, Name, NoVideos, VideoContainer } from "styles/video";
 
 const Videos = ({ videos }) => (
   <>
