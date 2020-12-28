@@ -1,14 +1,14 @@
 import { tvApi } from "api";
-import Loader from "components/Loader";
-import MainScreen from "components/MainScreen";
-import Section from "components/Section";
+import Loader from "Components/Loader";
+import MainScreen from "Components/MainScreen";
+import Section from "Components/Section";
 import { SwiperSlide } from "swiper/react";
 import "swiper/swiper.scss";
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
-import Poster from "components/Poster";
-import Message from "components/Message";
+import Poster from "Components/Poster";
+import Message from "Components/Message";
 
 const Container = styled.div`
   margin-top: 80px;

@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import Movie from "Routes/Movie";
 import TV from "Routes/TV";
 import Search from "Routes/Search";
-import Header from "components/Header";
+import Header from "Components/Header";
 import Detail from "Routes/Detail";
 import Credits from "./Credits";
 import Videos from "./Videos";
