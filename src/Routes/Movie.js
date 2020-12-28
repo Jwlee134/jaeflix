@@ -1,14 +1,15 @@
-import { moviesApi } from "api";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "swiper/swiper.scss";
 import styled from "styled-components";
 import { Helmet } from "react-helmet";
-import Loader from "Components/Loader";
-import MainScreen from "Components/MainScreen";
-import Section from "Components/Section";
-import Poster from "Components/Poster";
-import Message from "Components/Message";
+import Loader from "components/Loader";
+import MainScreen from "components/MainScreen";
+import Section from "components/Section";
+import Poster from "components/Poster";
+import Message from "components/Message";
 import { SwiperSlide } from "swiper/react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchMovies } from "store/movies";
 
 const Container = styled.div`
   margin-top: 80px;
@@ -16,45 +17,21 @@ const Container = styled.div`
 `;
 
 const Movie = () => {
-  const [movie, setMovie] = useState({
-    nowPlaying: [],
-    topRated: [],
-    upcoming: [],
-    popular: [],
-  });
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  const fetchMovies = async () => {
-    try {
-      const {
-        data: { results: nowPlaying },
-      } = await moviesApi.nowPlaying();
-      const {
-        data: { results: topRated },
-      } = await moviesApi.topRated();
-      const {
-        data: { results: upcoming },
-      } = await moviesApi.upcoming();
-      const {
-        data: { results: popular },
-      } = await moviesApi.popular();
-      setMovie({
-        topRated,
-        upcoming,
-        popular,
-        nowPlaying,
-      });
-    } catch (error) {
-      setError("페이지 정보를 찾을 수 없습니다.");
-    } finally {
-      setLoading(false);
-    }
-  };
+  const {
+    nowPlaying,
+    topRated,
+    popular,
+    upcoming,
+    error,
+    loading,
+  } = useSelector((state) => state.movies);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchMovies();
-  }, []);
+    dispatch(fetchMovies());
+  }, [dispatch]);
+
+  if (loading) return <Loader />;
 
   return (
     <>
@@ -65,11 +42,11 @@ const Movie = () => {
         <Loader />
       ) : (
         <>
-          <MainScreen nowPlaying={movie.nowPlaying} />
+          <MainScreen nowPlaying={nowPlaying} />
           <Container>
-            {movie.popular && movie.popular.length > 0 && (
+            {popular && popular.length > 0 && (
               <Section title="인기">
-                {movie.popular.map((movie) => (
+                {popular.map((movie) => (
                   <SwiperSlide key={movie.id}>
                     <Poster
                       id={movie.id}
@@ -83,9 +60,9 @@ const Movie = () => {
                 ))}
               </Section>
             )}
-            {movie.upcoming && movie.upcoming.length > 0 && (
+            {upcoming && upcoming.length > 0 && (
               <Section title="상영 예정">
-                {movie.upcoming.map((movie) => (
+                {upcoming.map((movie) => (
                   <SwiperSlide key={movie.id}>
                     <Poster
                       id={movie.id}
@@ -99,9 +76,9 @@ const Movie = () => {
                 ))}
               </Section>
             )}
-            {movie.topRated && movie.topRated.length > 0 && (
+            {topRated && topRated.length > 0 && (
               <Section title="최고 평점">
-                {movie.topRated.map((movie) => (
+                {topRated.map((movie) => (
                   <SwiperSlide key={movie.id}>
                     <Poster
                       id={movie.id}

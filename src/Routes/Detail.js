@@ -1,14 +1,14 @@
 import { moviesApi, tvApi } from "api";
 import React, { useCallback, useEffect, useState } from "react";
-import Loader from "Components/Loader";
+import Loader from "components/Loader";
 import { Helmet } from "react-helmet";
-import Message from "Components/Message";
-import Section from "Components/Section";
-import Poster from "Components/Poster";
-import DetailInfo from "Components/DetailInfo";
+import Message from "components/Message";
+import Section from "components/Section";
+import Poster from "components/Poster";
+import DetailInfo from "components/DetailInfo";
 import { SwiperSlide } from "swiper/react";
 import "swiper/swiper.scss";
-import { Backdrop, Container } from "Styles/Detail";
+import { Backdrop, Container } from "styles/detail";
 
 const Detail = ({
   match: {

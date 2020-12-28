@@ -1,13 +1,13 @@
 import { moviesApi, tvApi } from "api";
 import React, { useState } from "react";
-import Loader from "Components/Loader";
-import Section from "Components/Section";
-import Message from "Components/Message";
-import Poster from "Components/Poster";
+import Loader from "components/Loader";
+import Section from "components/Section";
+import Message from "components/Message";
+import Poster from "components/Poster";
 import { Helmet } from "react-helmet";
 import { SwiperSlide } from "swiper/react";
 import "swiper/swiper.scss";
-import { Container, Form, Input } from "Styles/Search";
+import { Container, Form, Input } from "styles/search";
 
 const Search = () => {
   const [results, setResults] = useState({
