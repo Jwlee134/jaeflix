@@ -33,7 +33,7 @@
     "deploy": "gh-pages -d build",
     "predeploy": "npm run build"
   },
-  "homepage": "https://admiring-archimedes-d142e9.netlify.app",
+  "homepage": "https://jaeflix.netlify.app",
   "eslintConfig": {
     "extends": [
       "react-app",
