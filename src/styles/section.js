@@ -14,7 +14,7 @@ export const Container = styled.div`
     opacity: 0;
   }
   @media screen and (max-width: 500px) {
-    padding: 10px 10px;
+    padding: 20px 10px;
   }
   @media screen and (max-width: 700px) {
     .swiper-button-next,

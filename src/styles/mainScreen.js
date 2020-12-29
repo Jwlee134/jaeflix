@@ -155,12 +155,13 @@ export const Container = styled.div`
   }
   @media screen and (max-width: 450px) {
     ${SectionTitle} {
-      font-size: 40px;
+      font-size: 35px;
     }
     ${ContentTitle} {
       font-size: 25px;
     }
     ${ContentData} {
+      font-weight: 400;
       font-size: 17px;
     }
     ${GoDetail} {

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const Cover = styled.img`
-  width: 100%;
+  max-width: 100%;
   max-height: 100%;
   z-index: 1;
   border-radius: 10px;
@@ -79,9 +79,10 @@ export const Content = styled.div`
   grid-template-columns: 3fr 8fr;
   width: 100%;
   height: calc(100vh - 100px);
+  margin-bottom: 20px;
   @media screen and (max-width: 1000px) {
     grid-template-columns: none;
-    grid-template-rows: auto 90vh;
+    grid-template-rows: auto 100vh;
     height: auto;
     ${Cover} {
       width: 180px;
@@ -99,6 +100,7 @@ export const Content = styled.div`
       text-align: center;
     }
     ${ItemContainer} {
+      height: 80%;
       text-align: left;
     }
   }
