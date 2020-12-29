@@ -17,7 +17,7 @@ const Detail = ({
   },
   location: { pathname },
 }) => {
-  const { result, recommends, casts, crews, loading, error } = useSelector(
+  const { result, recommends, loading, error } = useSelector(
     (state) => state.detail
   );
   const dispatch = useDispatch();
@@ -44,23 +44,7 @@ const Detail = ({
       <Backdrop
         bgImg={`https://image.tmdb.org/t/p/original${result.backdrop_path}`}
       />
-      <DetailInfo
-        id={result.id}
-        imgUrl={result.poster_path}
-        title={isMovie ? result.title : result.name}
-        originTitle={isMovie ? result.original_title : result.original_name}
-        date={isMovie ? result.release_date : result.first_air_date}
-        runtime={isMovie ? result.runtime : result.episode_run_time}
-        genres={result.genres}
-        overview={result.overview}
-        rating={result.vote_average}
-        casts={casts}
-        crews={crews}
-        videos={result.videos.results}
-        imdbId={result.imdb_id}
-        countries={result.production_countries}
-        companies={result.production_companies}
-      />
+      <DetailInfo result={result} />
       {recommends &&
         recommends.length > 0 &&
         (isMovie ? (

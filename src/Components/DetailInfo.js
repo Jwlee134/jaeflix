@@ -1,9 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link, withRouter } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import BasicInfo from "./BasicInfo";
-import Credits from "./Credits";
-import Videos from "./Videos";
 import { faImdb } from "@fortawesome/free-brands-svg-icons";
 import {
   BasicData,
@@ -18,25 +16,28 @@ import {
   TitleContainer,
   Ul,
 } from "styles/detailInfo";
+import Credits from "./Credits";
+import Videos from "./Videos";
 
-const DetailInfo = ({
-  id,
-  imgUrl,
-  title,
-  originTitle,
-  date,
-  runtime,
-  genres,
-  overview,
-  rating,
-  casts,
-  crews,
-  videos,
-  imdbId,
-  countries,
-  companies,
-  location: { pathname },
-}) => {
+const DetailInfo = ({ result }) => {
+  const { pathname } = useLocation();
+  const {
+    id,
+    poster_path: imgUrl,
+    title,
+    name,
+    original_title,
+    original_name,
+    release_date,
+    first_air_date,
+    imdbId,
+  } = result;
+  const date = release_date ? release_date : first_air_date;
+  const selected = pathname === `/movie/${id}` || pathname === `/tv/${id}`;
+  const credits =
+    pathname === `/movie/${id}/credits` || pathname === `/tv/${id}/credits`;
+  const videos =
+    pathname === `/movie/${id}/videos` || pathname === `/tv/${id}/videos`;
   const isMovie = pathname.includes("/movie/");
   return (
     <Content>
@@ -45,7 +46,7 @@ const DetailInfo = ({
       />
       <Data>
         <TitleContainer>
-          <Title>{title}</Title>
+          <Title>{title ? title : name}</Title>
           {imdbId && (
             <a href={`https://www.imdb.com/title/${imdbId}`} target="blank">
               <SFontAwesomeIcon icon={faImdb} />
@@ -56,13 +57,11 @@ const DetailInfo = ({
           {pathname.includes("/movie/") ? "영화" : "TV 프로그램"}
         </BasicData>
         <Divider>|</Divider>
-        <BasicData>{originTitle}</BasicData>
+        <BasicData>{original_title ? original_title : original_name}</BasicData>
         <Divider>|</Divider>
         <BasicData>{date ? date.substring(0, 4) : "연도 정보 없음"}</BasicData>
         <Ul>
-          <Li
-            selected={pathname === `/movie/${id}` || pathname === `/tv/${id}`}
-          >
+          <Li selected={selected}>
             <Link to={isMovie ? `/movie/${id}` : `/tv/${id}`}>기본 정보</Link>
           </Li>
           <Li selected={pathname.includes("credits")}>
@@ -76,23 +75,10 @@ const DetailInfo = ({
             </Link>
           </Li>
         </Ul>
-        <ItemContainer
-          selected={pathname === `/movie/${id}` || pathname === `/tv/${id}`}
-        >
-          {pathname === `/movie/${id}` || pathname === `/tv/${id}` ? (
-            <BasicInfo
-              genres={genres}
-              runtime={runtime}
-              overview={overview}
-              date={date}
-              rating={rating}
-              countries={countries}
-            />
-          ) : pathname.includes("credits") ? (
-            <Credits casts={casts} crews={crews} companies={companies} />
-          ) : pathname.includes("videos") ? (
-            <Videos videos={videos} />
-          ) : null}
+        <ItemContainer selected={selected}>
+          {selected && <BasicInfo />}
+          {credits && <Credits />}
+          {videos && <Videos />}
         </ItemContainer>
       </Data>
     </Content>
@@ -115,4 +101,4 @@ DetailInfo.propTypes = {
   companies: PropTypes.array,
 };
 
-export default withRouter(DetailInfo);
+export default DetailInfo;

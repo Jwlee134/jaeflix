@@ -22,8 +22,8 @@ const Poster = ({
   isMovie = false,
   isCredits = false,
   isCompany = false,
-}) =>
-  isCredits ? (
+}) => {
+  return isCredits ? (
     isCompany ? (
       <Container>
         <ImgContainer>
@@ -85,6 +85,7 @@ const Poster = ({
       </Container>
     </Link>
   );
+};
 
 Poster.propTypes = {
   imageUrl: PropTypes.string,
