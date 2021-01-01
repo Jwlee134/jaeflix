@@ -5,10 +5,10 @@ import { Helmet } from "react-helmet";
 import { fetchResults } from "store/search";
 import { RootState } from "store/reducers";
 
-import Loader from "Components/Loader";
-import Section from "Components/Section";
-import Message from "Components/Message";
-import Poster from "Components/Poster";
+import Loader from "Components/Common/Loader";
+import Section from "Components/Common/Section";
+import Message from "Components/Common/Message";
+import Poster from "Components/Common/Poster";
 
 import { Container, Form, Input } from "styles/search";
 import { Text } from "styles/message";
@@ -52,9 +52,9 @@ const Search = () => {
             onChange={updateTerm}
           ></Input>
         </Form>
-        {movieResults && movieResults.length > 0 && (
+        {movieResults && movieResults?.length > 0 && (
           <Section title="영화 검색 결과">
-            {movieResults.map((movie) => (
+            {movieResults?.map((movie) => (
               <SwiperSlide key={movie.id}>
                 <Poster
                   key={movie.id}
@@ -71,7 +71,7 @@ const Search = () => {
         )}
         {tvResults && tvResults.length > 0 && (
           <Section title="TV 검색 결과">
-            {tvResults.map((show) => (
+            {tvResults?.map((show) => (
               <SwiperSlide key={show.id}>
                 <Poster
                   key={show.id}

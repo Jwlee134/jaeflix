@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import {
   Container,
@@ -13,6 +12,17 @@ import {
   Year,
 } from "styles/poster";
 
+interface IProps {
+  id: number;
+  imageUrl: string;
+  title: string;
+  rating?: number;
+  year?: string;
+  isMovie?: boolean;
+  isCredits?: boolean;
+  isCompany?: boolean;
+}
+
 const Poster = ({
   id,
   imageUrl,
@@ -22,40 +32,23 @@ const Poster = ({
   isMovie = false,
   isCredits = false,
   isCompany = false,
-}) => {
+}: IProps) => {
   return isCredits ? (
-    isCompany ? (
-      <Container>
-        <ImgContainer>
-          <Img
-            isContents={false}
-            isCompany={true}
-            bgUrl={
-              imageUrl
-                ? `https://image.tmdb.org/t/p/w300${imageUrl}`
-                : "/noImg.png"
-            }
-          />
-        </ImgContainer>
-        <Title>{title}</Title>
-      </Container>
-    ) : (
-      <Container>
-        <ImgContainer>
-          <Img
-            isContents={false}
-            isCompany={false}
-            bgUrl={
-              imageUrl
-                ? `https://image.tmdb.org/t/p/w300${imageUrl}`
-                : "/noImg.png"
-            }
-          />
-        </ImgContainer>
-        <Title>{title}</Title>
-        <Year>{year}</Year>
-      </Container>
-    )
+    <Container>
+      <ImgContainer>
+        <Img
+          isContents={false}
+          isCompany={isCompany ? true : false}
+          bgUrl={
+            imageUrl
+              ? `https://image.tmdb.org/t/p/w300${imageUrl}`
+              : "/noImg.png"
+          }
+        />
+      </ImgContainer>
+      <Title>{title}</Title>
+      <Year>{year}</Year>
+    </Container>
   ) : (
     <Link to={isMovie ? `/movie/${id}` : `/tv/${id}`}>
       <Container>
@@ -85,16 +78,6 @@ const Poster = ({
       </Container>
     </Link>
   );
-};
-
-Poster.propTypes = {
-  imageUrl: PropTypes.string,
-  id: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  rating: PropTypes.number,
-  year: PropTypes.string,
-  isMovie: PropTypes.bool,
-  isCompany: PropTypes.bool,
 };
 
 export default Poster;

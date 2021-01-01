@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+
 import SwiperCore, { Navigation, Thumbs } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.scss";
-import { Link } from "react-router-dom";
 import {
   BackDrop,
   Container,
@@ -18,6 +18,7 @@ import {
   ThumbsContainer,
   Title,
 } from "styles/mainScreen";
+import { isMovieItem } from "types/typeGuards";
 
 SwiperCore.use([Navigation, Thumbs]);
 
@@ -43,15 +44,19 @@ const MainScreen = ({ nowPlaying, isShow = false }) => {
                 <SectionData>
                   <FirstColumn>
                     <ContentTitle>
-                      {isShow ? content.name : content.title}
+                      {isMovieItem(content) ? content.title : content.name}
                     </ContentTitle>
                     <ContentData>
                       <span>
-                        {isShow && !content.first_air_date && "연도 정보 없음"}
-                        {!isShow && !content.release_date && "연도 정보 없음"}
-                        {isShow
-                          ? content.first_air_date.substring(0, 4)
-                          : content.release_date.substring(0, 4)}
+                        {!isMovieItem(content) &&
+                          !content.first_air_date &&
+                          "연도 정보 없음"}
+                        {isMovieItem(content) &&
+                          !content.release_date &&
+                          "연도 정보 없음"}
+                        {isMovieItem(content)
+                          ? content.release_date.substring(0, 4)
+                          : content.first_air_date.substring(0, 4)}
                       </span>
                       <span> · </span>
                       <span>
@@ -114,7 +119,9 @@ const MainScreen = ({ nowPlaying, isShow = false }) => {
                       : "/noImg.png"
                   }
                 ></BackDrop>
-                <Title>{isShow ? content.name : content.title}</Title>
+                <Title>
+                  {isMovieItem(content) ? content.title : content.name}
+                </Title>
               </Item>
             </SwiperSlide>
           ))}
@@ -122,10 +129,6 @@ const MainScreen = ({ nowPlaying, isShow = false }) => {
       </ThumbsContainer>
     </Container>
   );
-};
-
-MainScreen.propTypes = {
-  nowPlaying: PropTypes.array,
 };
 
 export default MainScreen;

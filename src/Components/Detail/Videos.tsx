@@ -1,14 +1,15 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { Container, Img, Name, NoVideos, VideoContainer } from "styles/video";
 import { useSelector } from "react-redux";
 
+import { RootState } from "store/reducers";
+
+import { Container, Img, Name, NoVideos, VideoContainer } from "styles/video";
+
 const Videos = () => {
-  const {
-    result: {
-      videos: { results: videos },
-    },
-  } = useSelector((state) => state.detail);
+  const { result } = useSelector((state: RootState) => state.detail);
+
+  const videos = result?.videos?.results;
+
   return (
     <>
       <Container>
@@ -29,13 +30,9 @@ const Videos = () => {
             </VideoContainer>
           ))}
       </Container>
-      {videos.length === 0 && <NoVideos>등록된 동영상이 없습니다.</NoVideos>}
+      {videos?.length === 0 && <NoVideos>등록된 동영상이 없습니다.</NoVideos>}
     </>
   );
-};
-
-Videos.propTypes = {
-  videos: PropTypes.array,
 };
 
 export default Videos;

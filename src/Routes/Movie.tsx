@@ -6,11 +6,11 @@ import { fetchMovies } from "store/movie";
 import { Container } from "styles/movieTv";
 import { RootState } from "store/reducers";
 
-import Loader from "Components/Loader";
+import Loader from "Components/Common/Loader";
 import MainScreen from "Components/MainScreen";
-import Section from "Components/Section";
-import Poster from "Components/Poster";
-import Message from "Components/Message";
+import Section from "Components/Common/Section";
+import Poster from "Components/Common/Poster";
+import Message from "Components/Common/Message";
 
 import { SwiperSlide } from "swiper/react";
 import "swiper/swiper.scss";
@@ -40,54 +40,48 @@ const Movie = () => {
       </Helmet>
       <MainScreen nowPlaying={nowPlaying} />
       <Container>
-        {popular && popular.length > 0 && (
-          <Section title="인기">
-            {popular.map((movie, index) => (
-              <SwiperSlide key={index}>
-                <Poster
-                  id={movie.id}
-                  imageUrl={movie.poster_path}
-                  title={movie.title}
-                  year={movie.release_date}
-                  rating={movie.vote_average}
-                  isMovie={true}
-                />
-              </SwiperSlide>
-            ))}
-          </Section>
-        )}
-        {upcoming && upcoming.length > 0 && (
-          <Section title="상영 예정">
-            {upcoming.map((movie, index) => (
-              <SwiperSlide key={index}>
-                <Poster
-                  id={movie.id}
-                  imageUrl={movie.poster_path}
-                  title={movie.title}
-                  year={movie.release_date}
-                  rating={movie.vote_average}
-                  isMovie={true}
-                />
-              </SwiperSlide>
-            ))}
-          </Section>
-        )}
-        {topRated && topRated.length > 0 && (
-          <Section title="최고 평점">
-            {topRated.map((movie, index) => (
-              <SwiperSlide key={index}>
-                <Poster
-                  id={movie.id}
-                  imageUrl={movie.poster_path}
-                  title={movie.title}
-                  year={movie.release_date}
-                  rating={movie.vote_average}
-                  isMovie={true}
-                />
-              </SwiperSlide>
-            ))}
-          </Section>
-        )}
+        <Section title="인기">
+          {popular.map((movie, index) => (
+            <SwiperSlide key={index}>
+              <Poster
+                id={movie.id}
+                imageUrl={movie.poster_path}
+                title={movie.title}
+                year={movie.release_date}
+                rating={movie.vote_average}
+                isMovie={true}
+              />
+            </SwiperSlide>
+          ))}
+        </Section>
+        <Section title="상영 예정">
+          {upcoming.map((movie, index) => (
+            <SwiperSlide key={index}>
+              <Poster
+                id={movie.id}
+                imageUrl={movie.poster_path}
+                title={movie.title}
+                year={movie.release_date}
+                rating={movie.vote_average}
+                isMovie={true}
+              />
+            </SwiperSlide>
+          ))}
+        </Section>
+        <Section title="최고 평점">
+          {topRated.map((movie, index) => (
+            <SwiperSlide key={index}>
+              <Poster
+                id={movie.id}
+                imageUrl={movie.poster_path}
+                title={movie.title}
+                year={movie.release_date}
+                rating={movie.vote_average}
+                isMovie={true}
+              />
+            </SwiperSlide>
+          ))}
+        </Section>
       </Container>
     </>
   );

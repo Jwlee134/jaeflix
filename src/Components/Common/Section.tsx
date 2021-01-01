@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+
 import SwiperCore, { Navigation } from "swiper";
 import { Swiper } from "swiper/react";
 import "swiper/swiper.scss";
@@ -9,7 +9,13 @@ import { Container, Title } from "styles/section";
 
 SwiperCore.use([Navigation]);
 
-const Section = ({ title, children, isCredits = false }) => {
+interface IProps {
+  title: string;
+  children: React.ReactNode;
+  isCredits?: boolean;
+}
+
+const Section = ({ title, children, isCredits = false }: IProps) => {
   return (
     <>
       <Title>{title}</Title>
@@ -47,15 +53,6 @@ const Section = ({ title, children, isCredits = false }) => {
       </Container>
     </>
   );
-};
-
-Section.propTypes = {
-  title: PropTypes.string.isRequired,
-  isCredits: PropTypes.bool,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
 };
 
 export default Section;

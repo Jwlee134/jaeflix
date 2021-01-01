@@ -27,11 +27,13 @@ export interface CommonItems {
   overview: string;
   poster_path: string;
   vote_average: number;
+  imdbId: number;
 }
 
 export interface Videos {
   id: string;
   name: string;
+  key: string;
 }
 
 export interface Season {
@@ -45,20 +47,22 @@ export interface MovieItems extends CommonItems {
   original_title: string;
   release_date: string;
   title: string;
+  runtime: number;
 }
 
 export interface TVItems extends CommonItems {
   original_name: string;
   first_air_date: string;
   name: string;
+  episode_run_time: number;
 }
 
 export interface MovieDetailItems extends MovieItems {
   genres: Genres[];
   production_countries: ProductionCountries[];
   production_companies: ProductionCompaines[];
-  videos: {
-    results: Videos[];
+  videos?: {
+    results?: Videos[];
   };
 }
 
@@ -67,8 +71,8 @@ export interface TVDetailItems extends TVItems {
   production_countries: ProductionCountries[];
   production_companies: ProductionCompaines[];
   seasons: Season[];
-  videos: {
-    results: Videos[];
+  videos?: {
+    results?: Videos[];
   };
 }
 

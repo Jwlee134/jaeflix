@@ -5,11 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchTVs } from "store/tv";
 import { RootState } from "store/reducers";
 
-import Poster from "Components/Poster";
-import Message from "Components/Message";
-import Loader from "Components/Loader";
+import Poster from "Components/Common/Poster";
+import Message from "Components/Common/Message";
+import Loader from "Components/Common/Loader";
 import MainScreen from "Components/MainScreen";
-import Section from "Components/Section";
+import Section from "Components/Common/Section";
 
 import { Container } from "styles/movieTv";
 import { SwiperSlide } from "swiper/react";
@@ -31,40 +31,36 @@ const TV = () => {
   return (
     <>
       <Helmet>
-        <title>TV | Jaeflix</title>
+        (<title>TV | Jaeflix</title>)
       </Helmet>
       <MainScreen nowPlaying={airingToday} isShow={true} />
       <Container>
-        {popular && popular.length > 0 && (
-          <Section title="인기">
-            {popular.map((show) => (
-              <SwiperSlide key={show.id}>
-                <Poster
-                  id={show.id}
-                  imageUrl={show.poster_path}
-                  title={show.name}
-                  rating={show.vote_average}
-                  year={show.first_air_date}
-                />
-              </SwiperSlide>
-            ))}
-          </Section>
-        )}
-        {topRated && topRated.length > 0 && (
-          <Section title="최고 평점">
-            {topRated.map((show) => (
-              <SwiperSlide key={show.id}>
-                <Poster
-                  id={show.id}
-                  imageUrl={show.poster_path}
-                  title={show.name}
-                  rating={show.vote_average}
-                  year={show.first_air_date}
-                />
-              </SwiperSlide>
-            ))}
-          </Section>
-        )}
+        <Section title="인기">
+          {popular.map((show) => (
+            <SwiperSlide key={show.id}>
+              <Poster
+                id={show.id}
+                imageUrl={show.poster_path}
+                title={show.name}
+                rating={show.vote_average}
+                year={show.first_air_date}
+              />
+            </SwiperSlide>
+          ))}
+        </Section>
+        <Section title="최고 평점">
+          {topRated.map((show) => (
+            <SwiperSlide key={show.id}>
+              <Poster
+                id={show.id}
+                imageUrl={show.poster_path}
+                title={show.name}
+                rating={show.vote_average}
+                year={show.first_air_date}
+              />
+            </SwiperSlide>
+          ))}
+        </Section>
       </Container>
     </>
   );
