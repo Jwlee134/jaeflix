@@ -15,7 +15,7 @@ export const Container = styled.div`
   }
 `;
 
-export const Backdrop = styled.div`
+export const Backdrop = styled.div<{ bgImg: string }>`
   position: fixed;
   top: 0;
   left: 0;

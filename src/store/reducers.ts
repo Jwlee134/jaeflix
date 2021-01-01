@@ -1,4 +1,5 @@
 import { combineReducers } from "@reduxjs/toolkit";
+
 import movies from "./movie";
 import tvs from "./tv";
 import search from "./search";
@@ -10,5 +11,7 @@ const rootReducer = combineReducers({
   search,
   detail,
 });
+
+export type RootState = ReturnType<typeof rootReducer>;
 
 export default rootReducer;

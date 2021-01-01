@@ -19,7 +19,7 @@ export const List = styled.ul`
   display: flex;
 `;
 
-export const Item = styled.li`
+export const Item = styled.li<{ current: boolean }>`
   width: 80px;
   height: 50px;
   text-align: center;

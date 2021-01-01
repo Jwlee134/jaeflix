@@ -1,31 +1,35 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Helmet } from "react-helmet";
+
+import { fetchResults } from "store/search";
+import { RootState } from "store/reducers";
+
 import Loader from "Components/Loader";
 import Section from "Components/Section";
 import Message from "Components/Message";
 import Poster from "Components/Poster";
-import { Helmet } from "react-helmet";
-import { SwiperSlide } from "swiper/react";
-import "swiper/swiper.scss";
+
 import { Container, Form, Input } from "styles/search";
 import { Text } from "styles/message";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchResults } from "store/search";
+import { SwiperSlide } from "swiper/react";
+import "swiper/swiper.scss";
 
 const Search = () => {
   const { movieResults, tvResults, error, loading } = useSelector(
-    (state) => state.search
+    (state: RootState) => state.search
   );
   const dispatch = useDispatch();
   const [term, setTerm] = useState("");
 
-  const updateTerm = (e) => {
+  const updateTerm = (e: React.ChangeEvent<HTMLInputElement>) => {
     const {
       target: { value },
     } = e;
     setTerm(value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (term !== "") {
       dispatch(fetchResults(term));

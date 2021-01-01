@@ -1,8 +1,14 @@
 import styled from "styled-components";
 
+interface IProps {
+  bgUrl: string;
+  isCompany: boolean;
+  isContents: boolean;
+}
+
 export const Container = styled.div``;
 
-export const Img = styled.div`
+export const Img = styled.div<IProps>`
   background-image: url(${(props) => props.bgUrl});
   width: 100%;
   height: 300px;

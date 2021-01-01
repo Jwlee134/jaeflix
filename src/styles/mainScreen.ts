@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+interface IProps {
+  bgUrl: string;
+  thumb: boolean;
+}
+
 export const ThumbsContainer = styled.div`
   position: absolute;
   width: 100%;
@@ -31,7 +36,7 @@ export const SectionTitle = styled.div`
   font-weight: 600;
 `;
 
-export const BackDrop = styled.div`
+export const BackDrop = styled.div<IProps>`
   border-radius: 5px;
   background-image: url(${(props) => props.bgUrl});
   background-position: center center;

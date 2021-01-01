@@ -1,19 +1,23 @@
+import React, { useEffect } from "react";
+import { Helmet } from "react-helmet";
+
+import { useDispatch, useSelector } from "react-redux";
+import { fetchTVs } from "store/tv";
+import { RootState } from "store/reducers";
+
+import Poster from "Components/Poster";
+import Message from "Components/Message";
 import Loader from "Components/Loader";
 import MainScreen from "Components/MainScreen";
 import Section from "Components/Section";
+
+import { Container } from "styles/movieTv";
 import { SwiperSlide } from "swiper/react";
 import "swiper/swiper.scss";
-import React, { useEffect } from "react";
-import { Helmet } from "react-helmet";
-import Poster from "Components/Poster";
-import Message from "Components/Message";
-import { Container } from "styles/movieTv";
-import { fetchTVs } from "store/tv";
-import { useDispatch, useSelector } from "react-redux";
 
 const TV = () => {
   const { airingToday, topRated, popular, error, loading } = useSelector(
-    (state) => state.tvs
+    (state: RootState) => state.tvs
   );
   const dispatch = useDispatch();
 

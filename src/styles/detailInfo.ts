@@ -35,7 +35,7 @@ export const Data = styled.div`
   margin-left: 40px;
 `;
 
-export const ItemContainer = styled.div`
+export const ItemContainer = styled.div<{ selected: boolean }>`
   width: 100%;
   max-width: 100%;
   height: 70%;
@@ -64,7 +64,7 @@ export const Ul = styled.ul`
   margin-top: 30px;
 `;
 
-export const Li = styled.li`
+export const Li = styled.li<{ selected: boolean }>`
   font-size: 20px;
   font-weight: 300;
   padding: 10px;

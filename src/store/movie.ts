@@ -1,11 +1,21 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { moviesApi } from "api";
+import { MovieItems } from "types";
 
-const initialState = {
-  nowPlaying: null,
-  topRated: null,
-  upcoming: null,
-  popular: null,
+interface IState {
+  nowPlaying: MovieItems[];
+  topRated: MovieItems[];
+  upcoming: MovieItems[];
+  popular: MovieItems[];
+  loading: boolean;
+  error: string | null;
+}
+
+const initialState: IState = {
+  nowPlaying: [],
+  topRated: [],
+  upcoming: [],
+  popular: [],
   loading: true,
   error: null,
 };
@@ -37,19 +47,20 @@ const movieSlice = createSlice({
   name: "movie",
   initialState,
   reducers: {},
-  extraReducers: {
-    [fetchMovies.fulfilled]: (state, action) => {
-      const { nowPlaying, topRated, popular, upcoming } = action.payload;
-      state.nowPlaying = nowPlaying;
-      state.topRated = topRated;
-      state.popular = popular;
-      state.upcoming = upcoming;
-      state.loading = false;
-    },
-    [fetchMovies.rejected]: (state, action) => {
-      state.error = action.payload;
-      state.loading = false;
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchMovies.fulfilled, (state, action) => {
+        const { nowPlaying, topRated, popular, upcoming } = action.payload;
+        state.nowPlaying = nowPlaying;
+        state.topRated = topRated;
+        state.popular = popular;
+        state.upcoming = upcoming;
+        state.loading = false;
+      })
+      .addCase(fetchMovies.rejected, (state, action) => {
+        state.error = action.payload as string;
+        state.loading = false;
+      });
   },
 });
 

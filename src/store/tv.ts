@@ -1,7 +1,16 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { tvApi } from "api";
+import { TVItems } from "types";
 
-const initialState = {
+interface IState {
+  topRated: TVItems[];
+  airingToday: TVItems[];
+  popular: TVItems[];
+  loading: boolean;
+  error: string | null;
+}
+
+const initialState: IState = {
   topRated: [],
   airingToday: [],
   popular: [],
@@ -33,18 +42,19 @@ const tvSlice = createSlice({
   name: "tvSlice",
   initialState,
   reducers: {},
-  extraReducers: {
-    [fetchTVs.fulfilled]: (state, action) => {
-      const { airingToday, topRated, popular } = action.payload;
-      state.airingToday = airingToday;
-      state.topRated = topRated;
-      state.popular = popular;
-      state.loading = false;
-    },
-    [fetchTVs.rejected]: (state, action) => {
-      state.error = action.payload;
-      state.loading = false;
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchTVs.fulfilled, (state, action) => {
+        const { airingToday, topRated, popular } = action.payload;
+        state.airingToday = airingToday;
+        state.topRated = topRated;
+        state.popular = popular;
+        state.loading = false;
+      })
+      .addCase(fetchTVs.rejected, (state, action) => {
+        state.error = action.payload as string;
+        state.loading = false;
+      });
   },
 });
 
