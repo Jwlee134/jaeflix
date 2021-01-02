@@ -34,7 +34,7 @@ const TVDetail = ({ id }: IProps) => {
   return (
     <Container>
       <Helmet>
-        <title>{!isMovieDetail(result) && result!.name} | Jaeflix</title>
+        (<title>{!isMovieDetail(result) && result!.name} | Jaeflix</title>)
       </Helmet>
       <Backdrop
         bgImg={`https://image.tmdb.org/t/p/original${result!.backdrop_path}`}
