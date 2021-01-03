@@ -1,6 +1,6 @@
 # Jaeflix
 
-Learning React and ES6 by building a movie discovery app.
+Learning React and Redux and TypeScript by building a movie discovery app.
 
 ## Screens
 
