@@ -26,7 +26,7 @@ export const tvApi: TVApi = {
         query: term,
       },
     }),
-  recommends: (id: number) => api.get(`tv/${id}/recommendations`),
+  similar: (id: number) => api.get(`tv/${id}/similar`),
   credits: (id: number) => api.get(`tv/${id}/credits`),
 };
 
@@ -47,6 +47,6 @@ export const moviesApi: MoviesApi = {
         query: term,
       },
     }),
-  recommends: (id: number) => api.get(`movie/${id}/recommendations`),
+  similar: (id: number) => api.get(`movie/${id}/similar`),
   credits: (id: number) => api.get(`movie/${id}/credits`),
 };

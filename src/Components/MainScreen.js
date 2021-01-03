@@ -104,7 +104,7 @@ const MainScreen = ({ nowPlaying, isShow = false }) => {
               slidesPerView: 3,
             },
             500: {
-              slidesPerView: 3,
+              slidesPerView: 2,
             },
           }}
         >

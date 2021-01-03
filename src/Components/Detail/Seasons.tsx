@@ -23,7 +23,7 @@ const Seasons = () => {
               id={season.id}
               imageUrl={season.poster_path}
               title={season.name}
-              year={season.air_date.substring(0, 4)}
+              year={season.air_date?.substring(0, 4)}
               isCredits={true}
             />
           </SwiperSlide>

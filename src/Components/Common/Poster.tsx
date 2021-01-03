@@ -71,9 +71,7 @@ const Poster = ({
             ""
           )}
         </ImgContainer>
-        <Title>
-          {title.length > 18 ? `${title.substring(0, 17)}...` : title}
-        </Title>
+        <Title>{title}</Title>
         <Year>{year ? year.substring(0, 4) : "연도 정보 없음"}</Year>
       </Container>
     </Link>

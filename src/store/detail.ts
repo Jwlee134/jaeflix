@@ -11,7 +11,7 @@ import {
 
 interface IState {
   result: MovieDetailItems | TVDetailItems | null;
-  recommends: (MovieItems | TVItems)[];
+  similar: (MovieItems | TVItems)[];
   casts: Cast[];
   crews: Crew[];
   error: string | null;
@@ -20,7 +20,7 @@ interface IState {
 
 const initialState: IState = {
   result: null,
-  recommends: [],
+  similar: [],
   casts: [],
   crews: [],
   error: null,
@@ -33,12 +33,12 @@ export const fetchMovieDetail = createAsyncThunk(
     try {
       const { data: result } = await moviesApi.movieDetail(id);
       const {
-        data: { results: recommends },
-      } = await moviesApi.recommends(id);
+        data: { results: similar },
+      } = await moviesApi.similar(id);
       const {
         data: { cast: casts, crew: crews },
       } = await moviesApi.credits(id);
-      return { result, recommends, casts, crews };
+      return { result, similar, casts, crews };
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
@@ -51,12 +51,12 @@ export const fetchTVDetail = createAsyncThunk(
     try {
       const { data: result } = await tvApi.tvDetail(id);
       const {
-        data: { results: recommends },
-      } = await tvApi.recommends(id);
+        data: { results: similar },
+      } = await tvApi.similar(id);
       const {
         data: { cast: casts, crew: crews },
       } = await tvApi.credits(id);
-      return { result, recommends, casts, crews };
+      return { result, similar, casts, crews };
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
@@ -73,10 +73,10 @@ const detailSlice = createSlice({
         state.loading = true;
       })
       .addCase(fetchMovieDetail.fulfilled, (state, action) => {
-        const { result, recommends, casts, crews } = action.payload;
+        const { result, similar, casts, crews } = action.payload;
         state.loading = false;
         state.result = result;
-        state.recommends = recommends;
+        state.similar = similar;
         state.casts = casts;
         state.crews = crews;
       })
@@ -88,10 +88,10 @@ const detailSlice = createSlice({
         state.loading = true;
       })
       .addCase(fetchTVDetail.fulfilled, (state, action) => {
-        const { result, recommends, casts, crews } = action.payload;
+        const { result, similar, casts, crews } = action.payload;
         state.loading = false;
         state.result = result;
-        state.recommends = recommends;
+        state.similar = similar;
         state.casts = casts;
         state.crews = crews;
       })

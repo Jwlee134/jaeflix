@@ -7,7 +7,7 @@ import { RootState } from "store/reducers";
 
 import { isMovieDetail } from "types/typeGuards";
 
-import Recommends from "./Recommends";
+import Similar from "./Similar";
 import DetailInfo from "Components/Detail/DetailInfo";
 import Loader from "Components/Common/Loader";
 import Message from "Components/Common/Message";
@@ -41,7 +41,7 @@ const MovieDetail = ({ id }: IProps) => {
         bgImg={`https://image.tmdb.org/t/p/original${result!.backdrop_path}`}
       />
       <DetailInfo result={result} />
-      <Recommends />
+      <Similar />
     </Container>
   );
 };

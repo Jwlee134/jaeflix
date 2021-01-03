@@ -7,6 +7,7 @@ import { RootState } from "store/reducers";
 
 import { isMovieDetail } from "types/typeGuards";
 
+import Similar from "./Similar";
 import DetailInfo from "Components/Detail/DetailInfo";
 import Loader from "Components/Common/Loader";
 import Message from "Components/Common/Message";
@@ -40,6 +41,7 @@ const TVDetail = ({ id }: IProps) => {
         bgImg={`https://image.tmdb.org/t/p/original${result!.backdrop_path}`}
       />
       <DetailInfo result={result} />
+      <Similar />
       <Seasons />
     </Container>
   );

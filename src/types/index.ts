@@ -40,7 +40,7 @@ export interface Season {
   poster_path: string;
   name: string;
   id: number;
-  air_date: string;
+  air_date: string | null;
 }
 
 export interface MovieItems extends CommonItems {
@@ -104,7 +104,7 @@ export interface MoviesApi {
   popular: () => Promise<AxiosResponse<CategoryItems<MovieItems>>>;
   movieDetail: (id: number) => Promise<AxiosResponse<MovieDetailItems>>;
   search: (term: string) => Promise<AxiosResponse<CategoryItems<MovieItems>>>;
-  recommends: (id: number) => Promise<AxiosResponse<CategoryItems<MovieItems>>>;
+  similar: (id: number) => Promise<AxiosResponse<CategoryItems<MovieItems>>>;
   credits: (id: number) => Promise<AxiosResponse<Credits>>;
 }
 
@@ -114,6 +114,6 @@ export interface TVApi {
   popular: () => Promise<AxiosResponse<CategoryItems<TVItems>>>;
   tvDetail: (id: number) => Promise<AxiosResponse<TVDetailItems>>;
   search: (term: string) => Promise<AxiosResponse<CategoryItems<TVItems>>>;
-  recommends: (id: number) => Promise<AxiosResponse<CategoryItems<TVItems>>>;
+  similar: (id: number) => Promise<AxiosResponse<CategoryItems<TVItems>>>;
   credits: (id: number) => Promise<AxiosResponse<Credits>>;
 }
