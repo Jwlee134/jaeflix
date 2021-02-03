@@ -41,7 +41,7 @@ const Poster = ({
           isCompany={isCompany ? true : false}
           bgUrl={
             imageUrl
-              ? `https://image.tmdb.org/t/p/w300${imageUrl}`
+              ? `https://image.tmdb.org/t/p/w185${imageUrl}`
               : "/noImg.png"
           }
         />
@@ -58,7 +58,7 @@ const Poster = ({
             isCompany={false}
             bgUrl={
               imageUrl
-                ? `https://image.tmdb.org/t/p/w300${imageUrl}`
+                ? `https://image.tmdb.org/t/p/w185${imageUrl}`
                 : "/noImg.png"
             }
           />

@@ -19,15 +19,21 @@ import {
   Title,
 } from "styles/mainScreen";
 import { isMovieItem } from "types/typeGuards";
+import { MovieItems, TVItems } from "types";
 
 SwiperCore.use([Navigation, Thumbs]);
 
-const MainScreen = ({ nowPlaying, isShow = false }) => {
+interface Props {
+  nowPlaying: (MovieItems | TVItems)[];
+  isShow?: boolean;
+}
+
+const MainScreen = ({ nowPlaying, isShow = false }: Props) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
     <Container>
       <Swiper navigation thumbs={{ swiper: thumbsSwiper }} loop={true}>
-        {nowPlaying.map((content, index) => (
+        {nowPlaying.map((content, index: number) => (
           <SwiperSlide key={index}>
             <Item>
               <BackDrop
@@ -84,7 +90,7 @@ const MainScreen = ({ nowPlaying, isShow = false }) => {
       </Swiper>
       <ThumbsContainer>
         <Swiper
-          onSwiper={setThumbsSwiper}
+          onSwiper={setThumbsSwiper as any}
           watchSlidesVisibility
           watchSlidesProgress
           slidesPerView={2}
@@ -108,7 +114,7 @@ const MainScreen = ({ nowPlaying, isShow = false }) => {
             },
           }}
         >
-          {nowPlaying.map((content, index) => (
+          {nowPlaying.map((content, index: number) => (
             <SwiperSlide key={index}>
               <Item>
                 <BackDrop

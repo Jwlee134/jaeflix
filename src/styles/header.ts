@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const SHeader = styled.header`
+export const SHeader = styled.header<{ scroll: boolean }>`
   color: white;
   position: fixed;
   top: 0;
@@ -13,6 +13,9 @@ export const SHeader = styled.header`
   background-color: rgba(20, 20, 20, 0.8);
   z-index: 10;
   box-shadow: 0px 1px 5px 2px rgba(0, 0, 0, 0.8);
+  transition: all 0.2s linear;
+  transform: ${(props) =>
+    props.scroll ? "translateY(0px)" : "translateY(-50px)"};
 `;
 
 export const List = styled.ul`
