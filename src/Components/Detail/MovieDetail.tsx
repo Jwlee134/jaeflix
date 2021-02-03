@@ -38,7 +38,7 @@ const MovieDetail = ({ id }: IProps) => {
         (<title>{isMovieDetail(result) && result.title} | Jaeflix</title>)
       </Helmet>
       <Backdrop
-        bgImg={`https://image.tmdb.org/t/p/original${result!.backdrop_path}`}
+        bgImg={`https://image.tmdb.org/t/p/w1280${result!.backdrop_path}`}
       />
       <DetailInfo result={result} />
       <Similar />

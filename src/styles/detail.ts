@@ -16,9 +16,9 @@ export const Container = styled.div`
 `;
 
 export const Backdrop = styled.div<{ bgImg: string }>`
-  position: fixed;
+  position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   width: 100%;
   height: 100%;
   background-image: url(${(props) => props.bgImg});
@@ -27,5 +27,4 @@ export const Backdrop = styled.div<{ bgImg: string }>`
   filter: blur(3px);
   opacity: 0.5;
   z-index: -1;
-  margin-top: 50px;
 `;
