@@ -4,8 +4,42 @@ import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "store/reducers";
 
-import { Container, Li, Overview, Title, Ul } from "styles/basicInfo";
 import { isMovieDetail } from "types/typeGuards";
+
+import styled from "styled-components";
+
+const Overview = styled.div`
+  margin-top: 15px;
+  line-height: 1.7;
+  opacity: 0.8;
+  font-size: 14px;
+`;
+
+const Container = styled.div`
+  @media screen and (max-width: 400px) {
+    ${Overview},span {
+      font-size: 13px;
+    }
+  }
+`;
+
+const Ul = styled.ul`
+  border-left: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+  padding-left: 10px;
+`;
+
+const Li = styled.div`
+  :not(:last-child) {
+    margin-bottom: 10px;
+  }
+  font-size: 14px;
+`;
+
+const Title = styled.span`
+  margin-right: 10px;
+  opacity: 0.6;
+`;
 
 const BasicInfo = () => {
   const { result } = useSelector((state: RootState) => state.detail);

@@ -3,7 +3,47 @@ import { useSelector } from "react-redux";
 
 import { RootState } from "store/reducers";
 
-import { Container, Img, Name, NoVideos, VideoContainer } from "styles/video";
+import styled from "styled-components";
+
+const Name = styled.div`
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.3;
+`;
+
+const Container = styled.div`
+  padding: 0px 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 30px;
+  @media screen and (max-width: 600px) {
+    ${Name} {
+      font-size: 16px;
+      font-weight: 400;
+    }
+  }
+  @media screen and (max-width: 500px) {
+    ${Name} {
+      font-size: 12px;
+    }
+    display: block;
+  }
+`;
+
+const VideoContainer = styled.div`
+  text-align: center;
+`;
+
+const Img = styled.img`
+  width: 100%;
+  margin: 15px 0px;
+  border-radius: 10px;
+`;
+
+const NoVideos = styled.div`
+  font-size: 14px;
+  opacity: 0.8;
+`;
 
 const Videos = () => {
   const { result } = useSelector((state: RootState) => state.detail);

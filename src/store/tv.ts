@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { tvApi } from "api";
-import { TVItems } from "types";
+import { TV } from "types";
 
 interface IState {
-  topRated: TVItems[];
-  airingToday: TVItems[];
-  popular: TVItems[];
+  topRated: TV[];
+  airingToday: TV[];
+  popular: TV[];
   loading: boolean;
   error: string | null;
 }

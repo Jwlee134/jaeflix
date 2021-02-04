@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { Movie } from "types";
 import { moviesApi } from "api";
-import { MovieItems } from "types";
 
 interface IState {
-  nowPlaying: MovieItems[];
-  topRated: MovieItems[];
-  upcoming: MovieItems[];
-  popular: MovieItems[];
+  nowPlaying: Movie[];
+  topRated: Movie[];
+  upcoming: Movie[];
+  popular: Movie[];
   loading: boolean;
   error: string | null;
 }

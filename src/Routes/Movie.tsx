@@ -6,11 +6,11 @@ import { fetchMovies } from "store/movie";
 import { Container } from "styles/movieTv";
 import { RootState } from "store/reducers";
 
-import Loader from "Components/Common/Loader";
+import Loader from "Components/Loader";
 import MainScreen from "Components/MainScreen";
 import Section from "Components/Common/Section";
 import Poster from "Components/Common/Poster";
-import Message from "Components/Common/Message";
+import Message from "Components/Message";
 
 import { SwiperSlide } from "swiper/react";
 import "swiper/swiper.scss";

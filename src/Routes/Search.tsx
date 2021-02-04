@@ -5,15 +5,39 @@ import { Helmet } from "react-helmet";
 import { fetchResults } from "store/search";
 import { RootState } from "store/reducers";
 
-import Loader from "Components/Common/Loader";
+import Loader from "Components/Loader";
 import Section from "Components/Common/Section";
-import Message from "Components/Common/Message";
+import Message from "Components/Message";
 import Poster from "Components/Common/Poster";
 
-import { Container, Form, Input } from "styles/search";
-import { Text } from "styles/message";
 import { SwiperSlide } from "swiper/react";
 import "swiper/swiper.scss";
+
+import styled from "styled-components";
+
+const Container = styled.div`
+  margin-top: 80px;
+  padding: 0px 20px;
+  height: 100%;
+`;
+
+const Form = styled.form`
+  margin-bottom: 50px;
+  width: 100%;
+`;
+
+const Input = styled.input`
+  all: unset;
+  font-size: 30px;
+  width: 100%;
+`;
+
+const Text = styled.div`
+  font-size: 30px;
+  font-weight: 300;
+  color: #95a5a6;
+  margin-bottom: 20px;
+`;
 
 const Search = () => {
   const { movieResults, tvResults, error, loading } = useSelector(

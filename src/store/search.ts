@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { moviesApi, tvApi } from "api";
-import { MovieItems, TVItems } from "types";
+import { Movie, TV } from "types";
 
 interface IState {
-  movieResults: MovieItems[] | null;
-  tvResults: TVItems[] | null;
+  movieResults: Movie[] | null;
+  tvResults: TV[] | null;
   error: string | null;
   loading: boolean;
 }

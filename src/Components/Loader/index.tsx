@@ -1,6 +1,7 @@
+import React from "react";
 import styled from "styled-components";
 
-export const Container = styled.div`
+const Container = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
@@ -17,3 +18,7 @@ export const Container = styled.div`
     }
   }
 `;
+
+const Loader = () => <Container></Container>;
+
+export default Loader;

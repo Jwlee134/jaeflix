@@ -1,6 +1,7 @@
+import React from "react";
 import styled from "styled-components";
 
-export const Container = styled.div`
+const Container = styled.div`
   width: 100%;
   height: 100vh;
   display: flex;
@@ -11,9 +12,22 @@ export const Container = styled.div`
   text-align: center;
 `;
 
-export const Text = styled.div`
+const Text = styled.div`
   font-size: 30px;
   font-weight: 300;
   color: #95a5a6;
   margin-bottom: 20px;
 `;
+
+interface IProps {
+  text: string;
+}
+
+const Message = ({ text }: IProps) => (
+  <Container>
+    <Text>오류가 발생했습니다.</Text>
+    <Text>{text}</Text>
+  </Container>
+);
+
+export default Message;

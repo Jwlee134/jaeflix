@@ -1,17 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { moviesApi, tvApi } from "api";
-import {
-  Cast,
-  Crew,
-  MovieDetailItems,
-  MovieItems,
-  TVDetailItems,
-  TVItems,
-} from "types";
+import { Cast, Crew, Movie, MovieDetail, TV, TVDetail } from "types";
 
 interface IState {
-  result: MovieDetailItems | TVDetailItems | null;
-  similar: (MovieItems | TVItems)[];
+  result: MovieDetail | TVDetail | null;
+  similar: (Movie | TV)[];
   casts: Cast[];
   crews: Crew[];
   error: string | null;

@@ -6,8 +6,8 @@ import { fetchTVs } from "store/tv";
 import { RootState } from "store/reducers";
 
 import Poster from "Components/Common/Poster";
-import Message from "Components/Common/Message";
-import Loader from "Components/Common/Loader";
+import Message from "Components/Message";
+import Loader from "Components/Loader";
 import MainScreen from "Components/MainScreen";
 import Section from "Components/Common/Section";
 

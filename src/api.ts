@@ -1,6 +1,5 @@
 import axios from "axios";
 import { MoviesApi, TVApi } from "types";
-require("dotenv").config();
 
 const api = axios.create({
   baseURL: "https://api.themoviedb.org/3/",

@@ -5,15 +5,44 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchTVDetail } from "store/detail";
 import { RootState } from "store/reducers";
 
-import { isMovieDetail } from "types/typeGuards";
-
 import Similar from "./Similar";
 import DetailInfo from "Components/Detail/DetailInfo";
-import Loader from "Components/Common/Loader";
-import Message from "Components/Common/Message";
+import Loader from "Components/Loader";
+import Message from "Components/Message";
 import Seasons from "./Seasons";
 
-import { Backdrop, Container } from "styles/detail";
+import { isMovieDetail } from "types/typeGuards";
+
+import styled from "styled-components";
+
+const Container = styled.div`
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  padding: 30px;
+  padding-top: 100px;
+  @media screen and (max-width: 400px) {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  span {
+    line-height: 1.2;
+  }
+`;
+
+const Backdrop = styled.div<{ bgImg: string }>`
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(${(props) => props.bgImg});
+  background-position: center center;
+  background-size: cover;
+  filter: blur(3px);
+  opacity: 0.5;
+  z-index: -1;
+`;
 
 interface IProps {
   id: number;

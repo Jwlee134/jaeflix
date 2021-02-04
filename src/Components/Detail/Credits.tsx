@@ -64,7 +64,6 @@ const Credits = () => {
                   title={company.name}
                   isCredits={true}
                   imageUrl={company.logo_path}
-                  isCompany={true}
                 />
               </SwiperSlide>
             ))}

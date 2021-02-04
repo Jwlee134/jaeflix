@@ -1,13 +1,8 @@
-import { MovieDetailItems, MovieItems, TVDetailItems, TVItems } from "types";
+import { Movie, MovieDetail, TV, TVDetail } from "types";
 
 export const isMovieDetail = (
-  target: MovieDetailItems | TVDetailItems | null
-): target is MovieDetailItems => {
-  return (target as MovieDetailItems).title !== undefined;
-};
+  target: MovieDetail | TVDetail | null
+): target is MovieDetail => (target as MovieDetail).title !== undefined;
 
-export const isMovieItem = (
-  target: MovieItems | TVItems
-): target is MovieItems => {
-  return (target as MovieItems).title !== undefined;
-};
+export const isMovieItem = (target: Movie | TV): target is Movie =>
+  (target as Movie).title !== undefined;
