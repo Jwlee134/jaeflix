@@ -5,13 +5,16 @@ import styled from "styled-components";
 
 const Container = styled.div``;
 
-const Img = styled.img`
+const Img = styled.img<{ isCredits: boolean }>`
   border-radius: 5px;
   transition: opacity 0.1s linear;
   width: 100%;
   height: 250px;
+  @media screen and (max-width: 650px) {
+    height: ${(props) => (props.isCredits ? "210px" : "250px")};
+  }
   @media screen and (max-width: 440px) {
-    height: 220px;
+    height: ${(props) => (props.isCredits ? "160px" : "220px")};
   }
 `;
 
@@ -97,6 +100,7 @@ const Poster = ({
     <Container>
       <ImgContainer>
         <Img
+          isCredits={isCredits}
           src={
             imageUrl
               ? `https://image.tmdb.org/t/p/w300${imageUrl}`
