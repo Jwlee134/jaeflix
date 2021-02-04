@@ -95,8 +95,33 @@ const Poster = ({
   year,
   isMovie = false,
   isCredits = false,
-}: IProps) => (
-  <Link to={isMovie ? `/movie/${id}` : `/tv/${id}`}>
+}: IProps) =>
+  !isCredits ? (
+    <Link to={isMovie ? `/movie/${id}` : `/tv/${id}`}>
+      <Container>
+        <ImgContainer>
+          <Img
+            isCredits={isCredits}
+            src={
+              imageUrl
+                ? `https://image.tmdb.org/t/p/w300${imageUrl}`
+                : "/noImg.png"
+            }
+          />
+          <Detail>상세 보기</Detail>
+          {rating ? (
+            <Rating>
+              <Star>★</Star> <Text>{rating}/10</Text>
+            </Rating>
+          ) : (
+            ""
+          )}
+        </ImgContainer>
+        <Title>{title}</Title>
+        <Year>{year ? year.substring(0, 4) : "연도 정보 없음"}</Year>
+      </Container>
+    </Link>
+  ) : (
     <Container>
       <ImgContainer>
         <Img
@@ -107,25 +132,10 @@ const Poster = ({
               : "/noImg.png"
           }
         />
-        {!isCredits && (
-          <>
-            <Detail>상세 보기</Detail>
-            {rating ? (
-              <Rating>
-                <Star>★</Star> <Text>{rating}/10</Text>
-              </Rating>
-            ) : (
-              ""
-            )}
-          </>
-        )}
       </ImgContainer>
       <Title>{title}</Title>
-      <Year>
-        {isCredits ? year : year ? year.substring(0, 4) : "연도 정보 없음"}
-      </Year>
+      <Year>{year}</Year>
     </Container>
-  </Link>
-);
+  );
 
 export default Poster;
