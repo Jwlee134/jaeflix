@@ -6,7 +6,7 @@ import { fetchTVDetail } from "store/detail";
 import { RootState } from "store/reducers";
 
 import Similar from "./Similar";
-import DetailInfo from "Components/Detail/DetailInfo";
+import DetailMain from "Components/Detail/DetailMain";
 import Loader from "Components/Loader";
 import Message from "Components/Message";
 import Seasons from "./Seasons";
@@ -64,12 +64,12 @@ const TVDetail = ({ id }: IProps) => {
   return (
     <Container>
       <Helmet>
-        (<title>{!isMovieDetail(result) && result!.name} | Jaeflix</title>)
+        (<title>{`${!isMovieDetail(result) && result!.name} | Jaeflix`}</title>)
       </Helmet>
       <Backdrop
         bgImg={`https://image.tmdb.org/t/p/original${result!.backdrop_path}`}
       />
-      <DetailInfo result={result} />
+      <DetailMain result={result} />
       <Similar />
       <Seasons />
     </Container>

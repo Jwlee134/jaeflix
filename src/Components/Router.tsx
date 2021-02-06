@@ -15,11 +15,7 @@ const Router = () => (
         <Route path="/tv" exact component={TV} />
         <Route path="/search" component={Search} />
         <Route path="/movie/:id" component={Detail} />
-        <Route path="/movie/:id/credits" />
-        <Route path="/movie/:id/videos" />
         <Route path="/tv/:id" component={Detail} />
-        <Route path="/tv/:id/credits" />
-        <Route path="/tv/:id/videos" />
         <Redirect from="*" to="/" />
       </Switch>
     </>

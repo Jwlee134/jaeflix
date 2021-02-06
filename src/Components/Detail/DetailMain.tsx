@@ -1,17 +1,13 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import { MovieDetail, TVDetail } from "types";
-
-import BasicInfo from "./BasicInfo";
-import Credits from "./Credits";
-import Videos from "./Videos";
-
 import { faImdb } from "@fortawesome/free-brands-svg-icons";
 import { isMovieDetail } from "types/typeGuards";
 
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import DetailTabs from "./DetailTabs";
 
 const Cover = styled.img`
   max-width: 100%;
@@ -47,45 +43,6 @@ const Data = styled.div`
   margin-left: 40px;
 `;
 
-const ItemContainer = styled.div<{ selected: boolean }>`
-  width: 100%;
-  max-width: 100%;
-  height: 70%;
-  background-color: rgba(0, 0, 0, 0.4);
-  padding: 20px;
-  overflow: auto;
-  border-radius: 10px;
-  border-top-left-radius: ${(props) => (props.selected ? "0px" : "10px")};
-  ::-webkit-scrollbar {
-    width: 20px;
-  }
-  ::-webkit-scrollbar-thumb {
-    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    background-color: rgba(255, 255, 255, 0.7);
-    background-clip: padding-box;
-    border-radius: 20px;
-    border: 5px solid transparent;
-  }
-  ::-webkit-scrollbar-track {
-    background-color: rgba(0, 0, 0, 0);
-  }
-`;
-
-const Ul = styled.ul`
-  display: flex;
-  margin-top: 30px;
-`;
-
-const Li = styled.li<{ selected: boolean }>`
-  font-size: 20px;
-  font-weight: 300;
-  padding: 10px;
-  background-color: ${(props) =>
-    props.selected ? "rgba(0, 0, 0, 0.4)" : "none"};
-  border-top-left-radius: ${(props) => (props.selected ? "10px" : "none")};
-  border-top-right-radius: ${(props) => (props.selected ? "10px" : "none")};
-`;
-
 const Content = styled.div`
   display: grid;
   grid-template-columns: 3fr 8fr;
@@ -111,9 +68,6 @@ const Content = styled.div`
       width: 100%;
       text-align: center;
     }
-    ${ItemContainer} {
-      text-align: left;
-    }
   }
   @media screen and (max-width: 480px) {
     ${Title} {
@@ -121,14 +75,6 @@ const Content = styled.div`
     }
     ${Data} {
       max-width: 75vw;
-    }
-    ${Li} {
-      font-size: 17px;
-    }
-    ${ItemContainer} {
-      ::-webkit-scrollbar {
-        width: 0;
-      }
     }
   }
 `;
@@ -151,17 +97,7 @@ interface IProps {
 
 const DetailInfo = ({ result }: IProps) => {
   const { pathname } = useLocation();
-
-  const selected =
-    pathname === `/movie/${result?.id}` || pathname === `/tv/${result?.id}`;
-  const credits =
-    pathname === `/movie/${result?.id}/credits` ||
-    pathname === `/tv/${result?.id}/credits`;
-  const videos =
-    pathname === `/movie/${result?.id}/videos` ||
-    pathname === `/tv/${result?.id}/videos`;
   const isMovie = pathname.includes("movie");
-
   const date = isMovieDetail(result)
     ? result.release_date
     : result?.first_air_date;
@@ -196,40 +132,7 @@ const DetailInfo = ({ result }: IProps) => {
         </BasicData>
         <Divider>|</Divider>
         <BasicData>{date ? date.substring(0, 4) : "연도 정보 없음"}</BasicData>
-        <Ul>
-          <Li selected={selected}>
-            <Link to={isMovie ? `/movie/${result?.id}` : `/tv/${result?.id}`}>
-              기본 정보
-            </Link>
-          </Li>
-          <Li selected={pathname.includes("credits")}>
-            <Link
-              to={
-                isMovie
-                  ? `/movie/${result?.id}/credits`
-                  : `/tv/${result?.id}/credits`
-              }
-            >
-              참여
-            </Link>
-          </Li>
-          <Li selected={pathname.includes("videos")}>
-            <Link
-              to={
-                isMovie
-                  ? `/movie/${result?.id}/videos`
-                  : `/tv/${result?.id}/videos`
-              }
-            >
-              동영상
-            </Link>
-          </Li>
-        </Ul>
-        <ItemContainer selected={selected}>
-          {selected && <BasicInfo />}
-          {credits && <Credits />}
-          {videos && <Videos />}
-        </ItemContainer>
+        <DetailTabs />
       </Data>
     </Content>
   );

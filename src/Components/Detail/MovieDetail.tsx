@@ -8,7 +8,7 @@ import { RootState } from "store/reducers";
 import { isMovieDetail } from "types/typeGuards";
 
 import Similar from "./Similar";
-import DetailInfo from "Components/Detail/DetailInfo";
+import DetailMain from "Components/Detail/DetailMain";
 import Loader from "Components/Loader";
 import Message from "Components/Message";
 
@@ -64,12 +64,12 @@ const MovieDetail = ({ id }: IProps) => {
   return (
     <Container>
       <Helmet>
-        (<title>{isMovieDetail(result) && result.title} | Jaeflix</title>)
+        (<title>{`${isMovieDetail(result) && result.title} | Jaeflix`}</title>)
       </Helmet>
       <Backdrop
         bgImg={`https://image.tmdb.org/t/p/w1280${result!.backdrop_path}`}
       />
-      <DetailInfo result={result} />
+      <DetailMain result={result} />
       <Similar />
     </Container>
   );
