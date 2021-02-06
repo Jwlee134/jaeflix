@@ -8,7 +8,7 @@ import Poster from "../Common/Poster";
 
 import { SwiperSlide } from "swiper/react";
 import "swiper/swiper.scss";
-import { RootState } from "store/reducers";
+import { RootState } from "store";
 
 const Container = styled.div``;
 

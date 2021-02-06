@@ -38,7 +38,7 @@ export const fetchMovies = createAsyncThunk(
       } = await moviesApi.upcoming();
       return { nowPlaying, topRated, popular, upcoming };
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue("영화 정보를 불러오는 데 오류가 발생했습니다.");
     }
   }
 );

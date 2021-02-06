@@ -1,16 +1,12 @@
 import React from "react";
 import Router from "Components/Router";
-import GlobalStyles from "Components/GlobalStyles";
+import GlobalStyles from "styles/GlobalStyles";
 
-class App extends React.Component {
-  render() {
-    return (
-      <>
-        <Router />
-        <GlobalStyles />
-      </>
-    );
-  }
-}
+const App = () => (
+  <>
+    <GlobalStyles />
+    <Router />
+  </>
+);
 
 export default App;

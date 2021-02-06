@@ -3,8 +3,6 @@ import { Helmet } from "react-helmet";
 
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMovies } from "store/movie";
-import { Container } from "styles/movieTv";
-import { RootState } from "store/reducers";
 
 import Loader from "Components/Loader";
 import MainScreen from "Components/MainScreen";
@@ -14,6 +12,14 @@ import Message from "Components/Message";
 
 import { SwiperSlide } from "swiper/react";
 import "swiper/swiper.scss";
+
+import styled from "styled-components";
+import { RootState } from "store";
+
+const Container = styled.div`
+  margin-top: 80px;
+  padding: 0px 20px;
+`;
 
 const Movie = () => {
   const {

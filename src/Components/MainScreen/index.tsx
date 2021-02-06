@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import SwiperCore, { Navigation, Thumbs } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.scss";
+
 import { isMovieItem } from "types/typeGuards";
 import { Movie, TV } from "types";
 

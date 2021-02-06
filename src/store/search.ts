@@ -28,7 +28,7 @@ export const fetchResults = createAsyncThunk(
       } = await tvApi.search(term);
       return { movieResults, tvResults };
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue("검색 결과를 불러오는 데 오류가 발생했습니다.");
     }
   }
 );

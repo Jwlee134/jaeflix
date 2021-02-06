@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTVs } from "store/tv";
-import { RootState } from "store/reducers";
+import { RootState } from "store";
 
 import Poster from "Components/Common/Poster";
 import Message from "Components/Message";
@@ -11,9 +11,15 @@ import Loader from "Components/Loader";
 import MainScreen from "Components/MainScreen";
 import Section from "Components/Common/Section";
 
-import { Container } from "styles/movieTv";
 import { SwiperSlide } from "swiper/react";
 import "swiper/swiper.scss";
+
+import styled from "styled-components";
+
+const Container = styled.div`
+  margin-top: 80px;
+  padding: 0px 20px;
+`;
 
 const TV = () => {
   const { airingToday, topRated, popular, error, loading } = useSelector(

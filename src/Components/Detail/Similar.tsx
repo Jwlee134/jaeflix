@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
-import { RootState } from "store/reducers";
+import { RootState } from "store";
 
 import { isMovieItem } from "types/typeGuards";
 

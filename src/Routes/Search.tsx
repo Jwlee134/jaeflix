@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
 
 import { fetchResults } from "store/search";
-import { RootState } from "store/reducers";
+import { RootState } from "store";
 
 import Loader from "Components/Loader";
 import Section from "Components/Common/Section";

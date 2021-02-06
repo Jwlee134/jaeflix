@@ -33,7 +33,9 @@ export const fetchTVs = createAsyncThunk(
       } = await tvApi.popular();
       return { airingToday, topRated, popular };
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(
+        "TV 프로그램 정보를 불러오는 데 오류가 발생했습니다."
+      );
     }
   }
 );

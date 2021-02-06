@@ -33,7 +33,7 @@ export const fetchMovieDetail = createAsyncThunk(
       } = await moviesApi.credits(id);
       return { result, similar, casts, crews };
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue("상세 정보를 불러오는 데 오류가 발생했습니다.");
     }
   }
 );
@@ -51,7 +51,7 @@ export const fetchTVDetail = createAsyncThunk(
       } = await tvApi.credits(id);
       return { result, similar, casts, crews };
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue("상세 정보를 불러오는 데 오류가 발생했습니다.");
     }
   }
 );

@@ -2,11 +2,11 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 
 import { useSelector } from "react-redux";
-import { RootState } from "store/reducers";
 
 import { isMovieDetail } from "types/typeGuards";
 
 import styled from "styled-components";
+import { RootState } from "store";
 
 const Overview = styled.div`
   margin-top: 15px;
