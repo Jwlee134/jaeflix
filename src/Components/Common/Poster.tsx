@@ -3,18 +3,20 @@ import { Link } from "react-router-dom";
 
 import styled from "styled-components";
 
-const Container = styled.div``;
-
 const Img = styled.img<{ isCredits: boolean }>`
   border-radius: 5px;
   transition: opacity 0.1s linear;
-  width: 100%;
-  height: 250px;
-  @media screen and (max-width: 650px) {
-    height: ${(props) => (props.isCredits ? "210px" : "250px")};
-  }
-  @media screen and (max-width: 440px) {
-    height: ${(props) => (props.isCredits ? "160px" : "220px")};
+  height: 230px;
+  max-width: 100%;
+`;
+
+const Container = styled.div<{ isCredit: boolean }>`
+  width: 153px;
+  @media screen and (max-width: 500px) {
+    width: ${({ isCredit }) => (isCredit ? "100px" : "120px")};
+    ${Img} {
+      height: ${({ isCredit }) => (isCredit ? "150px" : "180px")};
+    }
   }
 `;
 
@@ -70,6 +72,9 @@ const Title = styled.span`
   display: block;
   padding-bottom: 5px;
   line-height: 1.2;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
 
 const Year = styled.span`
@@ -97,8 +102,8 @@ const Poster = ({
   isCredits = false,
 }: IProps) =>
   !isCredits ? (
-    <Link to={isMovie ? `/movie/${id}` : `/tv/${id}`}>
-      <Container>
+    <Container isCredit={false}>
+      <Link to={isMovie ? `/movie/${id}` : `/tv/${id}`}>
         <ImgContainer>
           <Img
             isCredits={isCredits}
@@ -119,10 +124,10 @@ const Poster = ({
         </ImgContainer>
         <Title>{title}</Title>
         <Year>{year ? year.substring(0, 4) : "연도 정보 없음"}</Year>
-      </Container>
-    </Link>
+      </Link>
+    </Container>
   ) : (
-    <Container>
+    <Container isCredit={true}>
       <ImgContainer>
         <Img
           isCredits={isCredits}

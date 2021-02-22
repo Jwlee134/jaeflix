@@ -8,7 +8,6 @@ import "swiper/components/pagination/pagination.scss";
 import styled from "styled-components";
 
 const Container = styled.div`
-  padding: 0px 30px;
   padding-bottom: 30px;
   .swiper-wrapper {
     margin-top: 20px;
@@ -20,17 +19,22 @@ const Container = styled.div`
   .swiper-button-disabled {
     opacity: 0;
   }
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 839px) {
     .swiper-button-next,
     .swiper-button-prev {
       display: none;
     }
   }
+  .swiper-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const Title = styled.div`
   font-size: 20px;
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 839px) {
     text-align: center;
   }
 `;
@@ -56,7 +60,6 @@ const Section = ({ title, children, isCredits = false }: IProps) => (
           1601: {
             slidesPerView: isCredits ? 5 : 8,
             slidesPerGroup: 5,
-            autoHeight: true,
           },
           1401: {
             slidesPerView: isCredits ? 4 : 7,
@@ -70,11 +73,11 @@ const Section = ({ title, children, isCredits = false }: IProps) => (
             slidesPerView: isCredits ? 3 : 5,
             slidesPerGroup: isCredits ? 3 : 5,
           },
-          768: {
+          840: {
             slidesPerView: 4,
             slidesPerGroup: 4,
           },
-          550: { slidesPerView: 3, slidesPerGroup: 3, height: 400 },
+          650: { slidesPerView: 3, slidesPerGroup: 3 },
         }}
       >
         {children}

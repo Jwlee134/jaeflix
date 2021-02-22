@@ -88,6 +88,11 @@ export const SecondColumn = styled.div`
   line-height: 1.5;
   font-weight: 400;
   position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
 `;
 
 export const ContentTitle = styled.div`
@@ -246,11 +251,7 @@ const MainScreen = ({ nowPlaying, isShow = false }: Props) => {
                       <GoDetail>상세 보기</GoDetail>
                     </Link>
                   </FirstColumn>
-                  <SecondColumn>
-                    {content.overview.length > 100
-                      ? `${content.overview.substring(0, 100)}...`
-                      : content.overview}
-                  </SecondColumn>
+                  <SecondColumn>{content.overview}</SecondColumn>
                 </SectionData>
               </BackDrop>
             </Item>
