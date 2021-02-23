@@ -13,6 +13,9 @@ const Li = styled.li<{ selected: boolean }>`
     props.selected ? "rgba(0, 0, 0, 0.4)" : "none"};
   border-top-left-radius: ${(props) => (props.selected ? "10px" : "none")};
   border-top-right-radius: ${(props) => (props.selected ? "10px" : "none")};
+  @media screen and (max-width: 479px) {
+    font-size: 16px;
+  }
 `;
 
 const ItemContainer = styled.div<{ selected: boolean }>`

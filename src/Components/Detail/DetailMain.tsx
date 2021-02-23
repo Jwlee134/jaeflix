@@ -60,9 +60,11 @@ const Content = styled.div`
   height: 100%;
   margin-bottom: 50px;
   @media screen and (max-width: 1024px) {
+    width: 100%;
+    max-width: 100%;
     grid-template-columns: none;
     grid-template-rows: auto 100vh;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     ${Cover} {
       width: 250px;
       height: 100%;
@@ -70,7 +72,9 @@ const Content = styled.div`
     ${Data} {
       margin-top: 40px;
       margin-left: 0;
-      width: calc(100vw - 77px);
+      width: 100%;
+      max-width: 100%;
+      min-width: 100%;
       min-height: calc(100vh - 40px);
     }
     ${Title} {
@@ -78,6 +82,11 @@ const Content = styled.div`
     }
     ${TitleContainer}, ${SubtitleContainer} {
       text-align: center;
+    }
+  }
+  @media screen and (max-width: 479px) {
+    ${Cover} {
+      width: 180px;
     }
   }
 `;

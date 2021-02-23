@@ -15,8 +15,6 @@ const Overview = styled.div`
   font-size: 14px;
 `;
 
-const Container = styled.div``;
-
 const Ul = styled.ul`
   border-left: 3px solid rgba(255, 255, 255, 0.3);
   border-radius: 3px;
@@ -34,6 +32,8 @@ const Title = styled.span`
   margin-right: 10px;
   opacity: 0.6;
 `;
+
+const Container = styled.div``;
 
 const BasicInfo = () => {
   const { result } = useSelector((state: RootState) => state.detail);
