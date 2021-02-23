@@ -67,7 +67,6 @@ const Content = styled.div`
     margin-bottom: 40px;
     ${Cover} {
       width: 250px;
-      height: 100%;
     }
     ${Data} {
       margin-top: 40px;
