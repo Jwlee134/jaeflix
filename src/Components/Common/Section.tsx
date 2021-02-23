@@ -19,7 +19,7 @@ const Container = styled.div`
   .swiper-button-disabled {
     opacity: 0;
   }
-  @media screen and (max-width: 839px) {
+  @media screen and (max-width: 1024px) {
     .swiper-button-next,
     .swiper-button-prev {
       display: none;
@@ -34,7 +34,7 @@ const Container = styled.div`
 
 const Title = styled.div`
   font-size: 20px;
-  @media screen and (max-width: 839px) {
+  @media screen and (max-width: 767px) {
     text-align: center;
   }
 `;

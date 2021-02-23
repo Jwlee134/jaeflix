@@ -6,7 +6,7 @@ import { RootState } from "store";
 import styled from "styled-components";
 
 const Name = styled.div`
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 1.3;
 `;
@@ -16,16 +16,7 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 30px;
-  @media screen and (max-width: 600px) {
-    ${Name} {
-      font-size: 16px;
-      font-weight: 400;
-    }
-  }
-  @media screen and (max-width: 500px) {
-    ${Name} {
-      font-size: 12px;
-    }
+  @media screen and (max-width: 479px) {
     display: block;
   }
 `;
@@ -34,7 +25,7 @@ const VideoContainer = styled.div`
   text-align: center;
 `;
 
-const Img = styled.img`
+const Video = styled.iframe`
   width: 100%;
   margin: 15px 0px;
   border-radius: 10px;
@@ -57,16 +48,12 @@ const Videos = () => {
           videos.length > 0 &&
           videos.map((video, index) => (
             <VideoContainer key={index}>
-              <a
-                href={`https://www.youtube.com/watch?v=${video.key}`}
-                target="blank"
-              >
-                <Img
-                  alt={video.id}
-                  src={`https://img.youtube.com/vi/${video.key}/0.jpg`}
-                />
-                <Name>{video.name}</Name>
-              </a>
+              <Video
+                src={`https://www.youtube.com/embed/${video.key}`}
+                height="220"
+                allowFullScreen
+              />
+              <Name>{video.name}</Name>
             </VideoContainer>
           ))}
       </Container>

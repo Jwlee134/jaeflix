@@ -22,12 +22,11 @@ const Container = styled.div`
   position: relative;
   padding: 30px;
   padding-top: 100px;
-  @media screen and (max-width: 400px) {
-    padding-left: 30px;
-    padding-right: 30px;
-  }
   span {
     line-height: 1.2;
+  }
+  @media screen and (max-width: 1024px) {
+    height: auto;
   }
 `;
 
@@ -76,8 +75,8 @@ const Detail = () => {
         bgImg={`https://image.tmdb.org/t/p/original${result!.backdrop_path}`}
       />
       <DetailMain result={result} />
-      <Similar />
       {!isMovie && <Seasons />}
+      <Similar />
     </Container>
   );
 };

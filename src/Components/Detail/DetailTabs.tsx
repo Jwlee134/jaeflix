@@ -18,14 +18,14 @@ const Li = styled.li<{ selected: boolean }>`
 const ItemContainer = styled.div<{ selected: boolean }>`
   width: 100%;
   max-width: 100%;
-  height: 70%;
+  overflow: auto;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
   padding: 20px;
-  overflow: auto;
   border-radius: 10px;
   border-top-left-radius: ${(props) => (props.selected ? "0px" : "10px")};
   ::-webkit-scrollbar {
-    width: 20px;
+    width: 17px;
   }
   ::-webkit-scrollbar-thumb {
     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
@@ -38,14 +38,8 @@ const ItemContainer = styled.div<{ selected: boolean }>`
     background-color: rgba(0, 0, 0, 0);
   }
   @media screen and (max-width: 1024px) {
-    text-align: left;
-  }
-  @media screen and (max-width: 480px) {
     ::-webkit-scrollbar {
-      width: 0;
-    }
-    ${Li} {
-      font-size: 17px;
+      display: none;
     }
   }
 `;

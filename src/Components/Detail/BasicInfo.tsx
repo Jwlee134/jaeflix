@@ -15,13 +15,7 @@ const Overview = styled.div`
   font-size: 14px;
 `;
 
-const Container = styled.div`
-  @media screen and (max-width: 400px) {
-    ${Overview},span {
-      font-size: 13px;
-    }
-  }
-`;
+const Container = styled.div``;
 
 const Ul = styled.ul`
   border-left: 3px solid rgba(255, 255, 255, 0.3);
@@ -29,7 +23,7 @@ const Ul = styled.ul`
   padding-left: 10px;
 `;
 
-const Li = styled.div`
+const Li = styled.li`
   :not(:last-child) {
     margin-bottom: 10px;
   }

@@ -21,14 +21,10 @@ const TitleContainer = styled.div`
   margin-bottom: 15px;
 `;
 
+const SubtitleContainer = styled.div``;
+
 const Title = styled.span`
   font-size: 40px;
-`;
-
-const Overview = styled.p`
-  opacity: 0.8;
-  line-height: 1.8;
-  width: 90%;
 `;
 
 const BasicData = styled.span`
@@ -39,44 +35,11 @@ const BasicData = styled.span`
 
 const Data = styled.div`
   width: 60vw;
-  max-height: calc(100vh - 100px);
   margin-left: 40px;
-`;
-
-const Content = styled.div`
-  display: grid;
-  grid-template-columns: 3fr 8fr;
-  width: 100%;
-  height: calc(100vh - 100px);
-  margin-bottom: 20px;
-  @media screen and (max-width: 1024px) {
-    grid-template-columns: none;
-    grid-template-rows: auto 70vh;
-    height: auto;
-    ${Cover} {
-      width: 180px;
-    }
-    ${Data} {
-      justify-self: center;
-      text-align: center;
-      margin-left: 0;
-      width: 100%;
-      max-width: 85vw;
-      margin: 20px 0px;
-    }
-    ${Overview} {
-      width: 100%;
-      text-align: center;
-    }
-  }
-  @media screen and (max-width: 480px) {
-    ${Title} {
-      font-size: 30px;
-    }
-    ${Data} {
-      max-width: 75vw;
-    }
-  }
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: calc(100vh - 130px);
 `;
 
 const Divider = styled.span`
@@ -89,6 +52,34 @@ const Divider = styled.span`
 const SFontAwesomeIcon = styled(FontAwesomeIcon)`
   font-size: 18px;
   margin-left: 10px;
+`;
+
+const Content = styled.div`
+  display: grid;
+  grid-template-columns: 3fr 8fr;
+  height: 100%;
+  margin-bottom: 50px;
+  @media screen and (max-width: 1024px) {
+    grid-template-columns: none;
+    grid-template-rows: auto 100vh;
+    margin-bottom: 20px;
+    ${Cover} {
+      width: 250px;
+      height: 100%;
+    }
+    ${Data} {
+      margin-top: 40px;
+      margin-left: 0;
+      width: calc(100vw - 77px);
+      min-height: calc(100vh - 40px);
+    }
+    ${Title} {
+      font-size: 30px;
+    }
+    ${TitleContainer}, ${SubtitleContainer} {
+      text-align: center;
+    }
+  }
 `;
 
 interface IProps {
@@ -123,15 +114,19 @@ const DetailInfo = ({ result }: IProps) => {
             </a>
           )}
         </TitleContainer>
-        <BasicData>{isMovie ? "영화" : "TV 프로그램"}</BasicData>
-        <Divider>|</Divider>
-        <BasicData>
-          {isMovieDetail(result)
-            ? result.original_title
-            : result?.original_name}
-        </BasicData>
-        <Divider>|</Divider>
-        <BasicData>{date ? date.substring(0, 4) : "연도 정보 없음"}</BasicData>
+        <SubtitleContainer>
+          <BasicData>{isMovie ? "영화" : "TV 프로그램"}</BasicData>
+          <Divider>|</Divider>
+          <BasicData>
+            {isMovieDetail(result)
+              ? result.original_title
+              : result?.original_name}
+          </BasicData>
+          <Divider>|</Divider>
+          <BasicData>
+            {date ? date.substring(0, 4) : "연도 정보 없음"}
+          </BasicData>
+        </SubtitleContainer>
         <DetailTabs />
       </Data>
     </Content>
