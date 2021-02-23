@@ -5,9 +5,9 @@ import { Swiper } from "swiper/react";
 import "swiper/swiper.scss";
 import "swiper/components/navigation/navigation.scss";
 import "swiper/components/pagination/pagination.scss";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-const Container = styled.div`
+const Container = styled.div<{ isCredits: boolean }>`
   padding-bottom: 30px;
   .swiper-wrapper {
     margin-top: 20px;
@@ -30,6 +30,13 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
   }
+  ${({ isCredits }) =>
+    isCredits &&
+    css`
+      @media screen and (max-width: 479px) {
+        padding-bottom: 0;
+      }
+    `}
 `;
 
 const Title = styled.div`
@@ -50,7 +57,7 @@ interface IProps {
 const Section = ({ title, children, isCredits = false }: IProps) => (
   <>
     <Title>{title}</Title>
-    <Container>
+    <Container isCredits={isCredits}>
       <Swiper
         spaceBetween={30}
         slidesPerView={2}

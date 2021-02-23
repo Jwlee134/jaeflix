@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const Img = styled.img<{ isCredits: boolean }>`
   border-radius: 5px;
@@ -68,13 +68,17 @@ const ImgContainer = styled.div`
   position: relative;
 `;
 
-const Title = styled.span`
+const Title = styled.span<{ isCredit: boolean }>`
   display: block;
   padding-bottom: 5px;
   line-height: 1.2;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  ${({ isCredit }) =>
+    !isCredit &&
+    css`
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    `}
 `;
 
 const Year = styled.span`
@@ -122,7 +126,7 @@ const Poster = ({
             ""
           )}
         </ImgContainer>
-        <Title>{title}</Title>
+        <Title isCredit={false}>{title}</Title>
         <Year>{year ? year.substring(0, 4) : "연도 정보 없음"}</Year>
       </Link>
     </Container>
@@ -138,7 +142,7 @@ const Poster = ({
           }
         />
       </ImgContainer>
-      <Title>{title}</Title>
+      <Title isCredit={true}>{title}</Title>
       <Year>{year}</Year>
     </Container>
   );
