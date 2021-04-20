@@ -72,7 +72,7 @@ const Detail = () => {
         )
       </Helmet>
       <Backdrop
-        bgImg={`https://image.tmdb.org/t/p/original${result!.backdrop_path}`}
+        bgImg={`https://image.tmdb.org/t/p/w1280${result!.backdrop_path}`}
       />
       <DetailMain result={result} />
       {!isMovie && <Seasons />}

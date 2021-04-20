@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "store";
 import styled from "styled-components";
 import BasicInfo from "./BasicInfo";
-import Credits from "./Credits";
-import Videos from "./Videos";
+
+const Credits = lazy(() => import("./Credits"));
+const Videos = lazy(() => import("./Videos"));
 
 const Li = styled.li<{ selected: boolean }>`
   font-size: 20px;
@@ -53,8 +56,47 @@ const Ul = styled.ul`
 `;
 
 const DetailTabs = () => {
+  const { result } = useSelector((state: RootState) => state.detail);
+  const { crews, casts } = useSelector((state: RootState) => state.detail);
   const [currentTab, setCurrentTab] = useState(0);
   const tabs = ["기본 정보", "참여", "동영상"];
+
+  useEffect(() => {
+    import("./Credits");
+    import("./Videos");
+  }, []);
+
+  useEffect(() => {
+    const videos = result?.videos?.results;
+    if (videos && videos.length > 0) {
+      videos.forEach((video) => {
+        if (video.key) {
+          const img = new Image();
+          img.src = `https://img.youtube.com/vi/${video.key}/0.jpg`;
+        }
+      });
+    }
+  }, [result]);
+
+  useEffect(() => {
+    if (crews.length > 0) {
+      crews.forEach((crew) => {
+        if (crew.profile_path) {
+          const img = new Image();
+          img.src = `https://image.tmdb.org/t/p/w300${crew.profile_path}`;
+        }
+      });
+    }
+    if (casts.length > 0) {
+      casts.forEach((cast) => {
+        if (cast.profile_path) {
+          const img = new Image();
+          img.src = `https://image.tmdb.org/t/p/w300${cast.profile_path}`;
+        }
+      });
+    }
+  }, [crews, casts]);
+
   return (
     <>
       <Ul>
@@ -70,8 +112,10 @@ const DetailTabs = () => {
       </Ul>
       <ItemContainer selected={currentTab === 0}>
         {currentTab === 0 && <BasicInfo />}
-        {currentTab === 1 && <Credits />}
-        {currentTab === 2 && <Videos />}
+        <Suspense fallback={null}>
+          {currentTab === 1 && <Credits />}
+          {currentTab === 2 && <Videos />}
+        </Suspense>
       </ItemContainer>
     </>
   );
