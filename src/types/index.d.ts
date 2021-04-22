@@ -92,7 +92,7 @@ interface CommonItems {
   vote_average: number;
 }
 
-interface Movie extends CommonItems {
+export interface Movie extends CommonItems {
   title: string;
   original_title: string;
   release_date: string;
@@ -101,7 +101,7 @@ interface Movie extends CommonItems {
   genre_ids: number[];
 }
 
-interface TV extends CommonItems {
+export interface TV extends CommonItems {
   first_air_date: string;
   origin_country: string[];
   name: string;

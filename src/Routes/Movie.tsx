@@ -15,6 +15,7 @@ import "swiper/swiper.scss";
 
 import styled from "styled-components";
 import { RootState } from "store";
+import useImagePreload from "hooks/useImagePreload";
 
 const Container = styled.div`
   margin-top: 80px;
@@ -32,11 +33,13 @@ const Movie = () => {
   } = useSelector((state: RootState) => state.movies);
   const dispatch = useDispatch();
 
+  const { imageLoaded } = useImagePreload(nowPlaying);
+
   useEffect(() => {
     dispatch(fetchMovies());
   }, [dispatch]);
 
-  if (loading) return <Loader />;
+  if (loading || !imageLoaded) return <Loader />;
   if (error) return <Message text={error} />;
 
   return (

@@ -15,6 +15,7 @@ import { SwiperSlide } from "swiper/react";
 import "swiper/swiper.scss";
 
 import styled from "styled-components";
+import useImagePreload from "hooks/useImagePreload";
 
 const Container = styled.div`
   margin-top: 80px;
@@ -27,11 +28,13 @@ const TV = () => {
   );
   const dispatch = useDispatch();
 
+  const { imageLoaded } = useImagePreload(airingToday);
+
   useEffect(() => {
     dispatch(fetchTVs());
   }, [dispatch]);
 
-  if (loading) return <Loader />;
+  if (loading || !imageLoaded) return <Loader />;
   if (error) return <Message text={error} />;
 
   return (

@@ -7,11 +7,12 @@ const Img = styled.img<{ isCredits: boolean }>`
   border-radius: 5px;
   transition: opacity 0.1s linear;
   height: 230px;
+  width: 100%;
   max-width: 100%;
 `;
 
 const Container = styled.div<{ isCredit: boolean }>`
-  width: 153px;
+  width: 160px;
   @media screen and (max-width: 500px) {
     width: ${({ isCredit }) => (isCredit ? "100px" : "120px")};
     ${Img} {
@@ -113,7 +114,7 @@ const Poster = ({
             isCredits={isCredits}
             src={
               imageUrl
-                ? `https://image.tmdb.org/t/p/w300${imageUrl}`
+                ? `https://image.tmdb.org/t/p/w185${imageUrl}`
                 : "/noImg.png"
             }
           />
@@ -137,7 +138,7 @@ const Poster = ({
           isCredits={isCredits}
           src={
             imageUrl
-              ? `https://image.tmdb.org/t/p/w300${imageUrl}`
+              ? `https://image.tmdb.org/t/p/w185${imageUrl}`
               : "/noImg.png"
           }
         />
