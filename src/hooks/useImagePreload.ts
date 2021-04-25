@@ -18,9 +18,7 @@ const useImagePreload = (items: (Movie | TV)[]) => {
     if (width >= 800) {
       return 4;
     }
-    if (width >= 500) {
-      return 3;
-    }
+    return 3;
   };
 
   useEffect(() => {
